@@ -6,6 +6,8 @@ import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 import Copyright from '../src/Copyright';
 import PrimarySearchAppBar from '../components/AppBar';
+import UploadButtons from '../components/Button';
+import StyledMenu from '../components/Menu';
 
 export default function Index() {
   return (
@@ -23,6 +25,8 @@ export default function Index() {
           <Copyright />
         </Box>
       </Container>
+      <UploadButtons />
+      <StyledMenu />
     </>
   );
 }
