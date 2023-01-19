@@ -1,7 +1,24 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+.sass-cache
+.vscode
+
 # dependencies
 /node_modules
+package-lock.json
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+tsconfig.tsbuildinfo
+
+# production
+/build
+/idea
+/.idea
 
 # misc
 .DS_Store
@@ -14,5 +31,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Next.js
-/.next
+layout.css
+pages.css
