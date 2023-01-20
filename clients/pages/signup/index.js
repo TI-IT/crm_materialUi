@@ -65,7 +65,7 @@ const Signup = ({ server_host }) => {
 
         if (data.ok) {
             setMessage('Регистрация прошла успешно. перенаправление в личный кабинет');
-            router.push('/dashboard');
+            router.push('/');
         } else {
             setDisabled(false);
             setMessage('Ошибка попробуйте другие данные');

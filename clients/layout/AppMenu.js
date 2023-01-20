@@ -16,6 +16,7 @@ const AppMenu = () => {
         {
             label: 'UI Components',
             items: [
+                { label: 'Клиенты', icon: 'pi pi-fw pi-id-card', to: '/crm/clients' },
                 { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/uikit/formlayout' },
                 { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/uikit/input' },
                 { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', to: '/uikit/floatlabel' },
@@ -114,7 +115,7 @@ const AppMenu = () => {
                             items: [
                                 { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' },
                                 { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark' },
-                                { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' },
+                                { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' }
                             ]
                         },
                         {
