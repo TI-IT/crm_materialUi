@@ -9,9 +9,9 @@ import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
 import { Password } from 'primereact/password';
 import { CountryService } from '../../../demo/service/CountryService';
-import CrmDropdown from '../../crud/add';
+import CrmDropdown from '../../crud/get';
 
-const InvalidStateDemo = ({ server_host }) => {
+const AddClients = ({ server_host }) => {
     const [countries, setCountries] = useState([]);
     const [addSites, setAddSites] = useState('');
     const [value3, setValue3] = useState('');
@@ -76,4 +76,4 @@ const InvalidStateDemo = ({ server_host }) => {
     );
 };
 
-export default InvalidStateDemo;
+export default AddClients;
