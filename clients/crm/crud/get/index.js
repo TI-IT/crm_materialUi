@@ -5,21 +5,11 @@ import { Dropdown } from 'primereact/dropdown';
 function crmDropdown({ server_host, getData, change }) {
     const [getServerData, setGetServerData] = React.useState([]);
     const [value8, setValue8] = useState(null);
+    // console.log(value8);
 
-    async function changeData(value) {
-        await function (value) {
-            setValue8(value);
-        };
-        if (!value8) {
-            console.log('IF');
-            console.log(value8);
-            setValue8(value);
-            changeDataNotNull();
-        } else {
-            setValue8(value);
-            console.log(value8);
-        }
-    }
+    const changeData = (value8) => {
+        // console.log(value8);
+    };
 
     function changeDataNotNull() {
         // setValue8(value2);
@@ -45,7 +35,7 @@ function crmDropdown({ server_host, getData, change }) {
             }
         });
 
-        fetch(fethUrl, {
+        await fetch(fethUrl, {
             method: 'get',
             credentials: 'include'
         })
@@ -66,7 +56,8 @@ function crmDropdown({ server_host, getData, change }) {
                 options={getServerData}
                 value={value8}
                 onChange={(e) => {
-                    changeData(e.value);
+                    setValue8(e.value);
+                    change(getData, e.value);
                 }}
                 optionLabel="name"
                 className="p-invalid"

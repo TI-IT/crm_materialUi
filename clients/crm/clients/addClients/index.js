@@ -6,6 +6,7 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
 import CrmDropdown from '../../crud/get';
 import CrmAddData from '../../crud/add';
+import { Button } from 'primereact/button';
 
 const AddClients = ({ server_host }) => {
     const [value3, setValue3] = useState('');
@@ -37,13 +38,21 @@ const AddClients = ({ server_host }) => {
         address: '',
         notes: ''
     });
+
     function changeClients(name, value) {
-        console.log(name, value);
-        setClients({
+        return setClients({
             ...clients,
             [name]: value
         });
     }
+
+    function crmDropdownGetObject(name, obj) {
+        return setClients({
+            ...clients,
+            [name]: obj.name
+        });
+    }
+    console.log(clients);
 
     const cities = [
         { name: 'New York', code: 'NY' },
@@ -52,13 +61,6 @@ const AddClients = ({ server_host }) => {
         { name: 'Istanbul', code: 'IST' },
         { name: 'Paris', code: 'PRS' }
     ];
-
-    // useEffect(() => {
-    //     const countryService = new CountryService();
-    //     countryService.getCountries().then((countries) => {
-    //         setCountries(countries);
-    //     });
-    // }, []);
 
     return (
         <div className="card">
@@ -71,31 +73,33 @@ const AddClients = ({ server_host }) => {
                     <div className="field">
                         <label htmlFor={titles.organizations}>{titles.organizations}</label>
                         {/* <InputText id={titles.organizations} type="text" name={'organizations'} onChange={(e) => changeClients('organizations', e.target.value)} value={clients.organization} /> */}
-                        <CrmDropdown getData={'organizations'} server_host={server_host} change={changeClients} />
+                        <CrmDropdown getData={'organizations'} server_host={server_host} change={crmDropdownGetObject} />
                         <div>{clients.organizations}</div>
                         {/* <CrmAddData addData={'organization'} server_host={server_host} /> */}
                     </div>
 
-                    <div className="field">
-                        <label htmlFor="inputtext">InputText</label>
-                        <InputText type="text" id="inputtext" value={value1} onChange={(e) => setValue1(e.target.value)} className="p-invalid" />
-                    </div>
                     <div className="field">
                         <label htmlFor="calendar">Calendar</label>
                         <Calendar inputId="calendar" value={value3} onChange={(e) => setValue3(e.value)} className="p-invalid" showIcon />
                     </div>
                     <div className="field">
                         <label htmlFor={titles.phone}>{titles.phone}</label>
-                        <InputNumber id={titles.phone} onChange={(e) => changeClients('phone', e.target.value)} value={clients.phone} className="p-invalid" />
+                        <InputNumber inputId={titles.phone} onChange={(e) => changeClients('phone', e.target.value)} value={clients.phone} className="p-invalid" />
                     </div>
                     <div className="field">
                         <label htmlFor={titles.city}>{titles.city}</label>
-                        <CrmDropdown getData={'citys'} server_host={server_host} change={changeClients} />
+                        <CrmDropdown getData={'citys'} server_host={server_host} change={crmDropdownGetObject} />
                     </div>
                     {/* <div className="field">
                         <label htmlFor={titles.city}>{titles.city}</label>
                         <CrmAddData addData={'city'} server_host={server_host} />
                     </div> */}
+                    {/* <Button
+                        label="Submit"
+                        onClick={(e) => {
+                            console.log(e);
+                        }}
+                    ></Button> */}
                 </div>
 
                 <div className="col-12 md:col-6">
