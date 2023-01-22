@@ -2,10 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { urls } from '../../directory';
 import { Dropdown } from 'primereact/dropdown';
 
-function crmDropdown({ server_host, getData }) {
-    // const getServerData = [{ name: 'New York' }, { name: 'Rome' }, { name: 'London' }, { name: 'Istanbul' }, { name: 'Paris' }];
-    const [getServerData, setGetServerData] = React.useState([{ name: 'New York' }]);
+function crmDropdown({ server_host, getData, change }) {
+    const [getServerData, setGetServerData] = React.useState([]);
     const [value8, setValue8] = useState(null);
+
+    async function changeData(value) {
+        await function (value) {
+            setValue8(value);
+        };
+        if (!value8) {
+            console.log('IF');
+            console.log(value8);
+            setValue8(value);
+            changeDataNotNull();
+        } else {
+            setValue8(value);
+            console.log(value8);
+        }
+    }
+
+    function changeDataNotNull() {
+        // setValue8(value2);
+        console.log(value8);
+        // change(value8);
+    }
 
     useEffect(createUrl, []);
 
@@ -34,22 +54,23 @@ function crmDropdown({ server_host, getData }) {
             })
             .then((data) => {
                 if (data.ok) {
-                    console.log(data.data);
                     setGetServerData(data.data);
                 }
             });
-        // alert(getServerData);
     }
 
     return (
         <>
-            <h1>crmDropdown</h1>
-
-            <div className="field">
-                <label htmlFor="dropdown1">выбрать город</label>
-                {/* <div>{getServerData}</div> */}
-                <Dropdown id="dropdown1" options={getServerData} value={value8} onClick={createUrl} onChange={(e) => setValue8(e.value)} optionLabel="name" className="p-invalid" />
-            </div>
+            <Dropdown
+                id="dropdown1"
+                options={getServerData}
+                value={value8}
+                onChange={(e) => {
+                    changeData(e.value);
+                }}
+                optionLabel="name"
+                className="p-invalid"
+            />
         </>
     );
 }

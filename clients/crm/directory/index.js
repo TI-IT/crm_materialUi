@@ -2,6 +2,8 @@ const urls = [
     { routes: 'users', name: 'users', method: 'add' },
     { routes: 'directory', name: 'city', method: 'add' },
     { routes: 'clients', name: 'clients', method: 'getAll' },
+    { routes: 'organizations', name: 'organizations', method: 'getAll' },
+    { routes: 'organizations', name: 'organization', method: 'add' },
     { routes: 'tasks', name: 'tasks', method: 'add' },
     { routes: 'products', name: 'products', method: 'add' },
     { routes: 'directory', name: 'citys', method: 'getAll' },

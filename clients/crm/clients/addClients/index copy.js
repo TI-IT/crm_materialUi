@@ -179,7 +179,6 @@ const AddClients = ({ server_host }) => {
                     </div>
                 </div>
             </div>
-
             <div className="col-6">
                 <div>{message}</div>
                 <div className="card">

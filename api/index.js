@@ -48,6 +48,7 @@ const tasksRouter = require('./routes/tasks');
 const allRouter = require('./routes/all');
 const productsRouter = require('./routes/products');
 const directoryRouter = require('./routes/directory');
+const organizationsRouter = require('./routes/organizations');
 const applicationsRouter = require('./routes/applications');
 
 app.use(logger('dev'));
@@ -59,6 +60,7 @@ app.use('/clients', clientsRouter);
 app.use('/tasks', tasksRouter);
 app.use('/products', productsRouter);
 app.use('/directory', directoryRouter);
+app.use('/organizations', organizationsRouter);
 app.use('/applications', applicationsRouter);
 
 app.listen(port, () => {

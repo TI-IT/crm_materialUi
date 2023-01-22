@@ -4,11 +4,6 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import { InputMask } from 'primereact/inputmask';
 import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
-import { Chips } from 'primereact/chips';
-import { Dropdown } from 'primereact/dropdown';
-import { MultiSelect } from 'primereact/multiselect';
-import { Password } from 'primereact/password';
-import { CountryService } from '../../../demo/service/CountryService';
 import CrmDropdown from '../../crud/get';
 import CrmAddData from '../../crud/add';
 
@@ -37,11 +32,18 @@ const AddClients = ({ server_host }) => {
         patronymic: '',
         phone: '',
         email: '',
-        organization: '',
+        organizations: '',
         city: '',
         address: '',
         notes: ''
     });
+    function changeClients(name, value) {
+        console.log(name, value);
+        setClients({
+            ...clients,
+            [name]: value
+        });
+    }
 
     const cities = [
         { name: 'New York', code: 'NY' },
@@ -66,6 +68,13 @@ const AddClients = ({ server_host }) => {
                         <label htmlFor={titles.name}>{titles.name}</label>
                         <InputText id={titles.name} type="text" name={'name'} onChange={(e) => changeClients('name', e.target.value)} value={clients.name} className="p-invalid" />
                     </div>
+                    <div className="field">
+                        <label htmlFor={titles.organizations}>{titles.organizations}</label>
+                        {/* <InputText id={titles.organizations} type="text" name={'organizations'} onChange={(e) => changeClients('organizations', e.target.value)} value={clients.organization} /> */}
+                        <CrmDropdown getData={'organizations'} server_host={server_host} change={changeClients} />
+                        <div>{clients.organizations}</div>
+                        {/* <CrmAddData addData={'organization'} server_host={server_host} /> */}
+                    </div>
 
                     <div className="field">
                         <label htmlFor="inputtext">InputText</label>
@@ -75,8 +84,18 @@ const AddClients = ({ server_host }) => {
                         <label htmlFor="calendar">Calendar</label>
                         <Calendar inputId="calendar" value={value3} onChange={(e) => setValue3(e.value)} className="p-invalid" showIcon />
                     </div>
-                    <CrmDropdown getData={'citys'} server_host={server_host} />
-                    <CrmAddData addData={'city'} server_host={server_host} />
+                    <div className="field">
+                        <label htmlFor={titles.phone}>{titles.phone}</label>
+                        <InputNumber id={titles.phone} onChange={(e) => changeClients('phone', e.target.value)} value={clients.phone} className="p-invalid" />
+                    </div>
+                    <div className="field">
+                        <label htmlFor={titles.city}>{titles.city}</label>
+                        <CrmDropdown getData={'citys'} server_host={server_host} change={changeClients} />
+                    </div>
+                    {/* <div className="field">
+                        <label htmlFor={titles.city}>{titles.city}</label>
+                        <CrmAddData addData={'city'} server_host={server_host} />
+                    </div> */}
                 </div>
 
                 <div className="col-12 md:col-6">
@@ -85,8 +104,12 @@ const AddClients = ({ server_host }) => {
                         <InputText id={titles.surname} type="text" name={'surname'} onChange={(e) => changeClients('surname', e.target.value)} value={clients.surname} />
                     </div>
                     <div className="field">
-                        <label htmlFor="inputnumber">InputNumber</label>
-                        <InputNumber id="inputnumber" value={value7} onValueChange={(e) => setValue7(e.target.value)} className="p-invalid" />
+                        <label htmlFor={titles.patronymic}>{titles.patronymic}</label>
+                        <InputText id={titles.patronymic} type="text" name={'patronymic'} onChange={(e) => changeClients('patronymic', e.target.value)} value={clients.patronymic} />
+                    </div>
+                    <div className="field">
+                        <label htmlFor={titles.email}>{titles.email}</label>
+                        <InputText id={titles.email} type="text" name={'email'} onChange={(e) => changeClients('email', e.target.value)} value={clients.email} />
                     </div>
 
                     <div className="field">
