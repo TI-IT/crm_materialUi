@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import AddClients from '../../../crm/clients/addClients';
 
-const Clients = () => {
+const Clients = ({ server_host }) => {
     return (
         <div>
-            <AddClients />
+            <AddClients server_host={server_host} />
         </div>
     );
 };

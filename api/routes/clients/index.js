@@ -18,8 +18,8 @@ router.post('/add', async (req, res) => {
   }
 });
 
-router.get('/get/all', async (req, res) => {
+router.get('/clients/getAll', async (req, res) => {
   const clients = await getAllClients();
-  res.json({ ok: true, products: clients });
+  res.json({ ok: true, clients: clients });
 });
 module.exports = router;

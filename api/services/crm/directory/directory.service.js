@@ -2,11 +2,11 @@ const dbConnect = require('../../dbConnect');
 const mongoose = require('mongoose');
 const Directory = require('../../../models/crm/directory');
 
-async function saveCity(city) {
+async function saveCity(data) {
   await dbConnect();
   const collection = mongoose.model('directory');
   await collection.create({
-    city: city.city,
+    city: data.city,
   });
 }
 

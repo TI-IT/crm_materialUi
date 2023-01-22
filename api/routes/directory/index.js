@@ -7,10 +7,10 @@ router.get('/', (req, res) => {
   res.send('Products');
 });
 
-router.post('/city/add', async (req, res) => {
-  const city = req.body;
+router.post('/city/addOneData', async (req, res) => {
+  const data = req.body;
   try {
-    await saveCity(city);
+    await saveCity(data);
     res.json({ ok: true });
   } catch (e) {
     console.error(e);
@@ -18,9 +18,9 @@ router.post('/city/add', async (req, res) => {
   }
 });
 
-router.get('/citys/get/all', async (req, res) => {
+router.get('/citys/getAll', async (req, res) => {
   const citys = await getAllCity();
-  res.json({ ok: true, citys: citys });
+  res.json({ ok: true, data: citys });
 });
 
 module.exports = router;

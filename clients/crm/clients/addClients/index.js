@@ -1,221 +1,79 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
 import { InputTextarea } from 'primereact/inputtextarea';
+import { InputMask } from 'primereact/inputmask';
+import { InputNumber } from 'primereact/inputnumber';
+import { Calendar } from 'primereact/calendar';
+import { Chips } from 'primereact/chips';
 import { Dropdown } from 'primereact/dropdown';
-import styles from './addClients.module.scss';
-import { useRouter } from 'next/router';
+import { MultiSelect } from 'primereact/multiselect';
+import { Password } from 'primereact/password';
+import { CountryService } from '../../../demo/service/CountryService';
+import CrmDropdown from '../../crud/add';
 
-const AddClients = ({ server_host }) => {
-    const [loading3, setLoading3] = useState(false);
-    const onLoadingClick3 = () => {
-        setLoading3(true);
+const InvalidStateDemo = ({ server_host }) => {
+    const [countries, setCountries] = useState([]);
+    const [addSites, setAddSites] = useState('');
+    const [value3, setValue3] = useState('');
+    const [value1, setValue1] = useState('');
+    const [value7, setValue7] = useState(null);
+    const [value8, setValue8] = useState(null);
+    const [value9, setValue9] = useState(null);
+    const [value10, setValue10] = useState('');
 
-        setTimeout(() => {
-            setLoading3(false);
-        }, 2000);
-    };
-
-    const [dropdownItem, setDropdownItem] = useState(null);
-    const dropdownItems = [
-        { name: 'Option 1', code: 'Option 1' },
-        { name: 'Option 2', code: 'Option 2' },
-        { name: 'Option 3', code: 'Option 3' }
+    const cities = [
+        { name: 'New York', code: 'NY' },
+        { name: 'Rome', code: 'RM' },
+        { name: 'London', code: 'LDN' },
+        { name: 'Istanbul', code: 'IST' },
+        { name: 'Paris', code: 'PRS' }
     ];
-    const [citys, setCitys] = React.useState([]);
-    const [addCity, setAddCity] = React.useState({});
-    const [hide, sethide] = React.useState(styles.hide);
-    const [titles, setTitles] = React.useState({
-        surname: 'Фамилия',
-        name: 'Имя',
-        patronymic: 'Отчество',
-        phone: 'Телефон',
-        email: 'Email',
-        organization: 'Организация',
-        city: 'Город',
-        address: 'Адрес',
-        notes: 'Примечания'
-    });
-    const [clients, setClients] = React.useState({
-        surname: '',
-        name: '',
-        patronymic: '',
-        phone: '',
-        email: '',
-        organization: '',
-        city: '',
-        address: '',
-        notes: ''
-    });
-    const [message, setMessage] = React.useState('');
-    const [disabled, setDisabled] = React.useState(false);
-    const router = useRouter('/');
 
-    function changeClients(name, value) {
-        setClients({
-            ...clients,
-            [name]: value
+    useEffect(() => {
+        const countryService = new CountryService();
+        countryService.getCountries().then((countries) => {
+            setCountries(countries);
         });
-    }
-
-    function changeCity(name, value) {
-        setAddCity({
-            ...addCity,
-            [name]: value
-        });
-    }
-
-    React.useEffect(loadCitys, []);
-
-    function loadCitys() {
-        fetch(server_host + '/directory/citys/get/all', {
-            method: 'get',
-            credentials: 'include'
-        })
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                if (data.ok) {
-                    setCitys(data.citys);
-                }
-            });
-    }
-
-    async function addClients() {
-        setDisabled(true);
-        setMessage('');
-        if (!clients.name || !clients.phone || !clients.organization) {
-            setMessage('Заполните нужные поля поля');
-            setDisabled(false);
-            return;
-        }
-
-        const res = await fetch(server_host + '/clients/add', {
-            method: 'post',
-            credentials: 'include',
-            body: JSON.stringify(clients),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const data = await res.json();
-        if (data.ok) {
-            setMessage('Клиент добавлен');
-            setDisabled(false);
-            setClients({
-                surname: '',
-                name: '',
-                patronymic: '',
-                phone: '',
-                email: '',
-                organization: '',
-                city: '',
-                address: '',
-                notes: ''
-            });
-            router.push('/applications');
-        } else {
-            setDisabled(false);
-            setMessage('Ошибка попробуйте другие данные');
-        }
-    }
-
-    function displayShow() {
-        sethide(styles.show);
-    }
-    function displayHide() {
-        sethide(styles.hide);
-    }
-    async function directoryAddCity() {
-        sethide(styles.hide);
-        try {
-            const res = await fetch(server_host + '/directory/city/add', {
-                method: 'post',
-                credentials: 'include',
-                body: JSON.stringify(addCity),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const data = await res.json();
-            if (data.ok) {
-                setMessage('Город добавлен');
-                loadCitys();
-                setDisabled(false);
-            } else {
-                setDisabled(false);
-                setMessage('Ошибка попробуйте другие данные');
-            }
-        } catch (error) {
-            alert('Сервер не отвечает');
-        }
-    }
+    }, []);
 
     return (
-        <>
-            <div className="grid">
+        <div className="card">
+            <h5>Invalid State</h5>
+            <div className="grid p-fluid">
                 <div className="col-12 md:col-6">
-                    <div className="card p-fluid">
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor={titles.name}>{titles.name}</label>
-                            <InputText id={titles.name} type="text" name={'name'} onChange={(e) => changeClients('name', e.target.value)} value={clients.name} />
-                        </div>
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor={titles.phone}>{titles.phone}</label>
-                            <InputText id={titles.phone} type="number" name={'phone'} onChange={(e) => changeClients('phone', e.target.value)} value={clients.phone} />
-                        </div>
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor={titles.organization}>{titles.organization}</label>
-                            <InputText id={titles.organization} type="text" name={'organization'} onChange={(e) => changeClients('organization', e.target.value)} value={clients.organization} />
-                        </div>
+                    <div className="field mt-3">
+                        <label htmlFor="inputtext">InputText</label>
+                        <InputText type="text" id="inputtext" value={value1} onChange={(e) => setValue1(e.target.value)} className="p-invalid" />
                     </div>
+
+                    <div className="field">
+                        <label htmlFor="calendar">Calendar</label>
+                        <Calendar inputId="calendar" value={value3} onChange={(e) => setValue3(e.value)} className="p-invalid" showIcon />
+                    </div>
+                    <CrmDropdown getData={'citys'} server_host={server_host} />
                 </div>
+
                 <div className="col-12 md:col-6">
-                    <div className="card p-fluid">
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor={titles.surname}>{titles.surname}</label>
-                            <InputText id={titles.surname} type="text" name={'surname'} onChange={(e) => changeClients('surname', e.target.value)} value={clients.surname} />
-                        </div>
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor={titles.patronymic}>{titles.patronymic}</label>
-                            <InputText id={titles.patronymic} type="text" name={'patronymic'} onChange={(e) => changeClients('patronymic', e.target.value)} value={clients.patronymic} />
-                        </div>
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor={titles.email}>{titles.email}</label>
-                            <InputText id={titles.email} type="text" name={'email'} onChange={(e) => changeClients('email', e.target.value)} value={clients.email} />
-                        </div>
+                    <div className="field">
+                        <label htmlFor="inputnumber">InputNumber</label>
+                        <InputNumber id="inputnumber" value={value7} onValueChange={(e) => setValue7(e.target.value)} className="p-invalid" />
                     </div>
-                </div>
-                <div className="col-12">
-                    <div className="card">
-                        <div className="p-fluid formgrid grid">
-                            <div className="field col-12 md:col-6">
-                                <label htmlFor="city">City</label>
-                                <InputText id="city" type="text" />
-                            </div>
-                            <div className="field col-12 md:col-3">
-                                <label htmlFor="state">State</label>
-                                <Dropdown id="state" value={dropdownItem} onChange={(e) => setDropdownItem(e.value)} options={dropdownItems} optionLabel="name" placeholder="Select One"></Dropdown>
-                            </div>
-                            <div className="field col-12 md:col-3">
-                                <label htmlFor="zip">Zip</label>
-                                <InputText id="zip" type="text" />
-                            </div>
-                            <div className="field col-12">
-                                <label htmlFor="address">Address</label>
-                                <InputTextarea id="address" rows="4" />
-                            </div>
-                            <div className="field col-12">
-                                <label htmlFor="address">Address</label>
-                                <InputTextarea id="address" rows="4" />
-                            </div>
-                        </div>
+                    <div className="field">
+                        <label htmlFor="dropdown">Dropdown</label>
+                        <Dropdown id="dropdown" options={cities} value={value8} onChange={(e) => setValue8(e.value)} optionLabel="name" className="p-invalid" />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="multiselect">MultiSelect</label>
+                        <MultiSelect id="multiselect" options={cities} value={value9} onChange={(e) => setValue9(e.value)} optionLabel="name" className="p-invalid" />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="textarea">Textarea</label>
+                        <InputTextarea id="textarea" rows="3" cols="30" value={value10} onChange={(e) => setValue10(e.target.value)} className="p-invalid" />
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
-export default AddClients;
+export default InvalidStateDemo;
