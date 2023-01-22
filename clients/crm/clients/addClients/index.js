@@ -13,14 +13,35 @@ import CrmDropdown from '../../crud/get';
 import CrmAddData from '../../crud/add';
 
 const AddClients = ({ server_host }) => {
-    const [countries, setCountries] = useState([]);
-    const [addSites, setAddSites] = useState('');
     const [value3, setValue3] = useState('');
     const [value1, setValue1] = useState('');
     const [value7, setValue7] = useState(null);
     const [value8, setValue8] = useState(null);
     const [value9, setValue9] = useState(null);
     const [value10, setValue10] = useState('');
+
+    const [titles, setTitles] = React.useState({
+        surname: 'Фамилия',
+        name: 'Имя',
+        patronymic: 'Отчество',
+        phone: 'Телефон',
+        email: 'Email',
+        organization: 'Организация',
+        city: 'Город',
+        address: 'Адрес',
+        notes: 'Примечания'
+    });
+    const [clients, setClients] = React.useState({
+        surname: '',
+        name: '',
+        patronymic: '',
+        phone: '',
+        email: '',
+        organization: '',
+        city: '',
+        address: '',
+        notes: ''
+    });
 
     const cities = [
         { name: 'New York', code: 'NY' },
@@ -30,23 +51,26 @@ const AddClients = ({ server_host }) => {
         { name: 'Paris', code: 'PRS' }
     ];
 
-    useEffect(() => {
-        const countryService = new CountryService();
-        countryService.getCountries().then((countries) => {
-            setCountries(countries);
-        });
-    }, []);
+    // useEffect(() => {
+    //     const countryService = new CountryService();
+    //     countryService.getCountries().then((countries) => {
+    //         setCountries(countries);
+    //     });
+    // }, []);
 
     return (
         <div className="card">
-            <h5>Invalid State</h5>
             <div className="grid p-fluid">
                 <div className="col-12 md:col-6">
-                    <div className="field mt-3">
+                    <div className="field">
+                        <label htmlFor={titles.name}>{titles.name}</label>
+                        <InputText id={titles.name} type="text" name={'name'} onChange={(e) => changeClients('name', e.target.value)} value={clients.name} className="p-invalid" />
+                    </div>
+
+                    <div className="field">
                         <label htmlFor="inputtext">InputText</label>
                         <InputText type="text" id="inputtext" value={value1} onChange={(e) => setValue1(e.target.value)} className="p-invalid" />
                     </div>
-
                     <div className="field">
                         <label htmlFor="calendar">Calendar</label>
                         <Calendar inputId="calendar" value={value3} onChange={(e) => setValue3(e.value)} className="p-invalid" showIcon />
@@ -57,17 +81,14 @@ const AddClients = ({ server_host }) => {
 
                 <div className="col-12 md:col-6">
                     <div className="field">
+                        <label htmlFor={titles.surname}>{titles.surname}</label>
+                        <InputText id={titles.surname} type="text" name={'surname'} onChange={(e) => changeClients('surname', e.target.value)} value={clients.surname} />
+                    </div>
+                    <div className="field">
                         <label htmlFor="inputnumber">InputNumber</label>
                         <InputNumber id="inputnumber" value={value7} onValueChange={(e) => setValue7(e.target.value)} className="p-invalid" />
                     </div>
-                    <div className="field">
-                        <label htmlFor="dropdown">Dropdown</label>
-                        <Dropdown id="dropdown" options={cities} value={value8} onChange={(e) => setValue8(e.value)} optionLabel="name" className="p-invalid" />
-                    </div>
-                    <div className="field">
-                        <label htmlFor="multiselect">MultiSelect</label>
-                        <MultiSelect id="multiselect" options={cities} value={value9} onChange={(e) => setValue9(e.value)} optionLabel="name" className="p-invalid" />
-                    </div>
+
                     <div className="field">
                         <label htmlFor="textarea">Textarea</label>
                         <InputTextarea id="textarea" rows="3" cols="30" value={value10} onChange={(e) => setValue10(e.target.value)} className="p-invalid" />
