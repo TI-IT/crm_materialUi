@@ -43,7 +43,7 @@ function crmDropdown({ server_host, getData }) {
 
     return (
         <>
-            <h1>AddOneData777</h1>
+            <h1>crmDropdown</h1>
 
             <div className="field">
                 <label htmlFor="dropdown1">выбрать город</label>

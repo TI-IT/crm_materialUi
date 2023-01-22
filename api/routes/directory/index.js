@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   res.send('Products');
 });
 
-router.post('/city/addOneData', async (req, res) => {
+router.post('/city/add', async (req, res) => {
   const data = req.body;
   try {
     await saveCity(data);

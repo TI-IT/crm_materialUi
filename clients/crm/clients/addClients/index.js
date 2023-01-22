@@ -10,6 +10,7 @@ import { MultiSelect } from 'primereact/multiselect';
 import { Password } from 'primereact/password';
 import { CountryService } from '../../../demo/service/CountryService';
 import CrmDropdown from '../../crud/get';
+import CrmAddData from '../../crud/add';
 
 const AddClients = ({ server_host }) => {
     const [countries, setCountries] = useState([]);
@@ -51,6 +52,7 @@ const AddClients = ({ server_host }) => {
                         <Calendar inputId="calendar" value={value3} onChange={(e) => setValue3(e.value)} className="p-invalid" showIcon />
                     </div>
                     <CrmDropdown getData={'citys'} server_host={server_host} />
+                    <CrmAddData addData={'city'} server_host={server_host} />
                 </div>
 
                 <div className="col-12 md:col-6">
