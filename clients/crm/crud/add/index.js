@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'primereact/dropdown';
 import FormAddOneData from '../../forma/addOneData';
 
-function crmDropdown({ server_host, getData, change }) {
+function crmDropdown({ server_host, getData, change, rerender }) {
     const [getServerData, setGetServerData] = React.useState([]);
     const [value8, setValue8] = useState(null);
+    const [message, setMessage] = useState('');
 
-    useEffect(createUrl, []);
+    useEffect(getAllData, []);
 
-    async function createUrl() {
+    async function getAllData() {
         const fethUrl = server_host + '/' + getData + '/getAllData';
         await fetch(fethUrl, {
             method: 'get',
@@ -20,6 +21,8 @@ function crmDropdown({ server_host, getData, change }) {
             .then((data) => {
                 if (data.ok) {
                     setGetServerData(data.data);
+                    setMessage('Данные получены');
+                    rerender(message);
                 }
             });
     }
@@ -40,7 +43,8 @@ function crmDropdown({ server_host, getData, change }) {
                         className="p-invalid"
                     />
                 </div>
-                <FormAddOneData server_host={server_host} addData={getData} />
+                <FormAddOneData server_host={server_host} addData={getData} rerender={getAllData} />
+                {message}
             </div>
         </>
     );

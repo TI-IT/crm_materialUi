@@ -11,6 +11,7 @@ const AddClients = ({ server_host }) => {
     const [value8, setValue8] = useState(null);
     const [value9, setValue9] = useState(null);
     const [value10, setValue10] = useState('');
+    const [message, setMessage] = useState('');
 
     const [titles, setTitles] = React.useState({
         surname: 'Фамилия',
@@ -48,15 +49,6 @@ const AddClients = ({ server_host }) => {
             [name]: obj.name
         });
     }
-    console.log(clients);
-
-    const cities = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
-    ];
 
     return (
         <>
@@ -70,32 +62,20 @@ const AddClients = ({ server_host }) => {
 
                         <div className="field">
                             <label htmlFor={titles.phone}>{titles.phone}</label>
-                            <InputNumber inputId={titles.phone} onChange={(e) => changeClients('phone', e.target.value)} value={clients.phone} className="p-invalid" />
+                            <InputNumber inputId={titles.phone} onChange={(e) => changeClients('phone', e.value)} value={clients.phone} className="p-invalid" />
                         </div>
                         <div className="field">
                             <label htmlFor={titles.organizations}>{titles.organizations}</label>
-                            <CrmDropdown getData={'organizations'} server_host={server_host} change={crmDropdownGetObject} />
-
-                            {/* <CrmAddData addData={'organization'} server_host={server_host} /> */}
+                            <CrmDropdown getData={'organizations'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
                         </div>
                         <div className="field">
                             <label htmlFor={titles.city}>{titles.city}</label>
-                            <CrmDropdown getData={'citys'} server_host={server_host} change={crmDropdownGetObject} />
+                            <CrmDropdown getData={'citys'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
                         </div>
                         <div className="field">
                             <label htmlFor={titles.address}>{titles.address}</label>
                             <InputTextarea id={titles.address} rows="3" cols="30" value={value10} onChange={(e) => setValue10(e.target.value)} />
                         </div>
-                        {/* <div className="field">
-                        <label htmlFor={titles.city}>{titles.city}</label>
-                        <CrmAddData addData={'city'} server_host={server_host} />
-                    </div> */}
-                        {/* <Button
-                        label="Submit"
-                        onClick={(e) => {
-                            console.log(e);
-                        }}
-                    ></Button> */}
                     </div>
                     <div className="col-12 md:col-6">
                         <div className="field">

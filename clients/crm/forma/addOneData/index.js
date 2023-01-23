@@ -3,7 +3,7 @@ import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 
-function FormAddOneData({ server_host, addData }) {
+function FormAddOneData({ server_host, addData, rerender }) {
     console.log(addData);
     const [newAddData, setNewAddData] = useState({});
     const [message, setMessage] = useState('');
@@ -24,11 +24,8 @@ function FormAddOneData({ server_host, addData }) {
 
     async function fetchAddNewData() {
         const fethUrl = server_host + '/' + addData + '/addOneData';
-        console.log(fethUrl);
-
         const newAddDataObject = {};
         newAddDataObject.name = newAddData;
-        console.log(newAddDataObject);
         try {
             const res = await fetch(fethUrl, {
                 method: 'post',
@@ -41,7 +38,7 @@ function FormAddOneData({ server_host, addData }) {
             const data = await res.json();
             if (data.ok) {
                 setMessage('Город добавлен');
-                // loadCitys();
+                rerender();
             } else {
                 setMessage('Ошибка попробуйте другие данные');
             }
@@ -52,9 +49,7 @@ function FormAddOneData({ server_host, addData }) {
 
     return (
         <>
-            <Dialog header="Dialog" visible={displayBasic} style={{ width: '50vw' }} modal footer={basicDialogFooter} onHide={() => setDisplayBasic(false)}>
-                <h1>Создать {addData}</h1>
-
+            <Dialog header={'Введите новую ' + addData} visible={displayBasic} style={{ width: '50vw' }} modal footer={basicDialogFooter} onHide={() => setDisplayBasic(false)}>
                 <div className="field">
                     <InputText id={addData} type="text" name={'name'} onChange={(e) => setNewAddData(e.target.value)} value={newAddData.name} className="p-invalid" />
                 </div>
