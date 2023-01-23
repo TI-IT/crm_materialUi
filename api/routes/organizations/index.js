@@ -21,7 +21,7 @@ router.post('/organization/add', async (req, res) => {
   }
 });
 
-router.get('/organizations/getAll', async (req, res) => {
+router.get('/getAllData', async (req, res) => {
   const organizations = await getAllOrganizations();
   res.json({ ok: true, data: organizations });
 });

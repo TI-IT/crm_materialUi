@@ -1,13 +1,13 @@
 const express = require('express');
 
-const { saveCity, getAllCitys } = require('../../services/crm/directory/directory.service');
+const { saveCity, getAllCitys } = require('../../services/crm/citys/citys.service');
 const router = express.Router();
 
 router.get('/', (req, res) => {
   res.send('Products');
 });
 
-router.post('/city/add', async (req, res) => {
+router.post('/add', async (req, res) => {
   const data = req.body;
   try {
     await saveCity(data);
@@ -18,7 +18,7 @@ router.post('/city/add', async (req, res) => {
   }
 });
 
-router.get('/citys/getAll', async (req, res) => {
+router.get('/getAllData', async (req, res) => {
   const citys = await getAllCitys();
   res.json({ ok: true, data: citys });
 });

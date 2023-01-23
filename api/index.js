@@ -47,7 +47,7 @@ const clientsRouter = require('./routes/clients');
 const tasksRouter = require('./routes/tasks');
 const allRouter = require('./routes/all');
 const productsRouter = require('./routes/products');
-const directoryRouter = require('./routes/directory');
+const citysRouter = require('./routes/citys');
 const organizationsRouter = require('./routes/organizations');
 const applicationsRouter = require('./routes/applications');
 
@@ -59,7 +59,7 @@ app.use('/users', usersRouter);
 app.use('/clients', clientsRouter);
 app.use('/tasks', tasksRouter);
 app.use('/products', productsRouter);
-app.use('/directory', directoryRouter);
+app.use('/citys', citysRouter);
 app.use('/organizations', organizationsRouter);
 app.use('/applications', applicationsRouter);
 
