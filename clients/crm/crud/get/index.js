@@ -1,21 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { urls } from '../../directory';
 import { Dropdown } from 'primereact/dropdown';
+import { Button } from 'primereact/button';
 
 function crmDropdown({ server_host, getData, change }) {
     const [getServerData, setGetServerData] = React.useState([]);
     const [value8, setValue8] = useState(null);
-    // console.log(value8);
-
-    const changeData = (value8) => {
-        // console.log(value8);
-    };
-
-    function changeDataNotNull() {
-        // setValue8(value2);
-        console.log(value8);
-        // change(value8);
-    }
 
     useEffect(createUrl, []);
 
@@ -51,17 +41,22 @@ function crmDropdown({ server_host, getData, change }) {
 
     return (
         <>
-            <Dropdown
-                id="dropdown1"
-                options={getServerData}
-                value={value8}
-                onChange={(e) => {
-                    setValue8(e.value);
-                    change(getData, e.value);
-                }}
-                optionLabel="name"
-                className="p-invalid"
-            />
+            <div className="flex gap-3">
+                <div className="w-12">
+                    <Dropdown
+                        id="dropdown1"
+                        options={getServerData}
+                        value={value8}
+                        onChange={(e) => {
+                            setValue8(e.value);
+                            change(getData, e.value);
+                        }}
+                        optionLabel="name"
+                        className="p-invalid"
+                    />
+                </div>
+                <Button type="button" className="w-3 pi  pi-plus p-button-success" />
+            </div>
         </>
     );
 }

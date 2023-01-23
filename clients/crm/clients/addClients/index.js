@@ -22,9 +22,9 @@ const AddClients = ({ server_host }) => {
         patronymic: 'Отчество',
         phone: 'Телефон',
         email: 'Email',
-        organization: 'Организация',
+        organizations: 'Организация',
         city: 'Город',
-        address: 'Адрес',
+        address: 'Адрес проживания',
         notes: 'Примечания'
     });
     const [clients, setClients] = React.useState({
@@ -70,25 +70,24 @@ const AddClients = ({ server_host }) => {
                         <label htmlFor={titles.name}>{titles.name}</label>
                         <InputText id={titles.name} type="text" name={'name'} onChange={(e) => changeClients('name', e.target.value)} value={clients.name} className="p-invalid" />
                     </div>
-                    <div className="field">
-                        <label htmlFor={titles.organizations}>{titles.organizations}</label>
-                        {/* <InputText id={titles.organizations} type="text" name={'organizations'} onChange={(e) => changeClients('organizations', e.target.value)} value={clients.organization} /> */}
-                        <CrmDropdown getData={'organizations'} server_host={server_host} change={crmDropdownGetObject} />
-                        <div>{clients.organizations}</div>
-                        {/* <CrmAddData addData={'organization'} server_host={server_host} /> */}
-                    </div>
 
-                    <div className="field">
-                        <label htmlFor="calendar">Calendar</label>
-                        <Calendar inputId="calendar" value={value3} onChange={(e) => setValue3(e.value)} className="p-invalid" showIcon />
-                    </div>
                     <div className="field">
                         <label htmlFor={titles.phone}>{titles.phone}</label>
                         <InputNumber inputId={titles.phone} onChange={(e) => changeClients('phone', e.target.value)} value={clients.phone} className="p-invalid" />
                     </div>
                     <div className="field">
+                        <label htmlFor={titles.organizations}>{titles.organizations}</label>
+                        <CrmDropdown getData={'organizations'} server_host={server_host} change={crmDropdownGetObject} />
+
+                        {/* <CrmAddData addData={'organization'} server_host={server_host} /> */}
+                    </div>
+                    <div className="field">
                         <label htmlFor={titles.city}>{titles.city}</label>
                         <CrmDropdown getData={'citys'} server_host={server_host} change={crmDropdownGetObject} />
+                    </div>
+                    <div className="field">
+                        <label htmlFor={titles.address}>{titles.address}</label>
+                        <InputTextarea id={titles.address} rows="3" cols="30" value={value10} onChange={(e) => setValue10(e.target.value)} />
                     </div>
                     {/* <div className="field">
                         <label htmlFor={titles.city}>{titles.city}</label>
@@ -101,7 +100,6 @@ const AddClients = ({ server_host }) => {
                         }}
                     ></Button> */}
                 </div>
-
                 <div className="col-12 md:col-6">
                     <div className="field">
                         <label htmlFor={titles.surname}>{titles.surname}</label>
@@ -115,10 +113,13 @@ const AddClients = ({ server_host }) => {
                         <label htmlFor={titles.email}>{titles.email}</label>
                         <InputText id={titles.email} type="text" name={'email'} onChange={(e) => changeClients('email', e.target.value)} value={clients.email} />
                     </div>
-
                     <div className="field">
-                        <label htmlFor="textarea">Textarea</label>
-                        <InputTextarea id="textarea" rows="3" cols="30" value={value10} onChange={(e) => setValue10(e.target.value)} className="p-invalid" />
+                        <label htmlFor={titles.email}>{titles.email}</label>
+                        <InputText id={titles.email} type="text" name={'email'} onChange={(e) => changeClients('email', e.target.value)} value={clients.email} />
+                    </div>
+                    <div className="field">
+                        <label htmlFor={titles.notes}>{titles.notes}</label>
+                        <InputTextarea id={titles.notes} rows="3" cols="30" value={value10} onChange={(e) => setValue10(e.target.value)} />
                     </div>
                 </div>
             </div>
