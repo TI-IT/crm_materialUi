@@ -19,7 +19,7 @@ const AddClients = ({ server_host }) => {
         patronymic: 'Отчество',
         phone: 'Телефон',
         email: 'Email',
-        analiticAddress: 'Откуда вы о нас узнали?',
+        analiticAddress: 'Откуда о нас узнали?',
         organizations: 'Организация',
         city: 'Город',
         address: 'Адрес проживания',
@@ -67,9 +67,10 @@ const AddClients = ({ server_host }) => {
                             <InputNumber inputId={titles.phone} onChange={(e) => changeClients('phone', e.value)} value={clients.phone} className="p-invalid" />
                         </div>
                         <div className="field">
-                            <label htmlFor={titles.organizations}>{titles.organizations}</label>
-                            <CrmDropdown getData={'organizations'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
+                            <label htmlFor={titles.analiticAddress}>{titles.analiticAddress}</label>
+                            <CrmDropdown getData={'analiticAddress'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
                         </div>
+
                         <div className="field">
                             <label htmlFor={titles.city}>{titles.city}</label>
                             <CrmDropdown getData={'citys'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
@@ -93,8 +94,8 @@ const AddClients = ({ server_host }) => {
                             <InputText id={titles.email} type="text" name={'email'} onChange={(e) => changeClients('email', e.target.value)} value={clients.email} />
                         </div>
                         <div className="field">
-                            <label htmlFor={titles.analiticAddress}>{titles.analiticAddress}</label>
-                            <InputText id={titles.analiticAddress} type="text" name={'analiticAddress'} onChange={(e) => changeClients('analiticAddress', e.target.value)} value={clients.email} />
+                            <label htmlFor={titles.organizations}>{titles.organizations}</label>
+                            <CrmDropdown getData={'organizations'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
                         </div>
                         <div className="field">
                             <label htmlFor={titles.notes}>{titles.notes}</label>
