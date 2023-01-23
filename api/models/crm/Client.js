@@ -9,10 +9,19 @@ const schema = new mongoose.Schema(
     name: {
       type: String,
     },
+    patronymic: {
+      type: String,
+    },
     phone: {
       type: Number,
     },
-    organization: {
+    email: {
+      type: String,
+    },
+    analiticAddress: {
+      type: String,
+    },
+    organizations: {
       type: String,
     },
     city: {

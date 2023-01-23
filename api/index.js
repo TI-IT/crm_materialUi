@@ -49,6 +49,7 @@ const allRouter = require('./routes/all');
 const productsRouter = require('./routes/products');
 const citysRouter = require('./routes/citys');
 const organizationsRouter = require('./routes/organizations');
+const analiticAddressRouter = require('./routes/analiticAddress');
 const applicationsRouter = require('./routes/applications');
 
 app.use(logger('dev'));
@@ -61,6 +62,7 @@ app.use('/tasks', tasksRouter);
 app.use('/products', productsRouter);
 app.use('/citys', citysRouter);
 app.use('/organizations', organizationsRouter);
+app.use('/analiticAddress', analiticAddressRouter);
 app.use('/applications', applicationsRouter);
 
 app.listen(port, () => {

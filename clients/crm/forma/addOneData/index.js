@@ -12,13 +12,13 @@ function FormAddOneData({ server_host, addData, rerender }) {
     const basicDialogFooter = (
         <Button
             type="button"
-            label="OK"
+            label="Сохранить"
             onClick={() => {
                 setDisplayBasic(false);
                 fetchAddNewData();
             }}
             icon="pi pi-check"
-            className="p-button-secondary"
+            className="bg-green-400 border-white-alpha-10"
         />
     );
 
@@ -51,13 +51,11 @@ function FormAddOneData({ server_host, addData, rerender }) {
         <>
             <Dialog header={'Введите новую ' + addData} visible={displayBasic} style={{ width: '50vw' }} modal footer={basicDialogFooter} onHide={() => setDisplayBasic(false)}>
                 <div className="field">
-                    <InputText id={addData} type="text" name={'name'} onChange={(e) => setNewAddData(e.target.value)} value={newAddData.name} className="p-invalid" />
+                    <InputText id={addData} type="text" name={'name'} onChange={(e) => setNewAddData(e.target.value)} value={newAddData.name} className="p-invalid text-blue-600 text-2xl " />
                 </div>
             </Dialog>
-            <div className="grid">
-                <div className="col-12">
-                    <Button type="button" icon="pi pi-plus" onClick={() => setDisplayBasic(true)} />
-                </div>
+            <div className="grid  max-h-full">
+                <Button className="bg-green-400 border-white-alpha-10" type="button" icon="pi pi-plus" onClick={() => setDisplayBasic(true)} />
             </div>
         </>
     );

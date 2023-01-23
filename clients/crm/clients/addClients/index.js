@@ -19,6 +19,7 @@ const AddClients = ({ server_host }) => {
         patronymic: 'Отчество',
         phone: 'Телефон',
         email: 'Email',
+        analiticAddress: 'Откуда вы о нас узнали?',
         organizations: 'Организация',
         city: 'Город',
         address: 'Адрес проживания',
@@ -30,6 +31,7 @@ const AddClients = ({ server_host }) => {
         patronymic: '',
         phone: '',
         email: '',
+        analiticAddress: '',
         organizations: '',
         city: '',
         address: '',
@@ -74,7 +76,7 @@ const AddClients = ({ server_host }) => {
                         </div>
                         <div className="field">
                             <label htmlFor={titles.address}>{titles.address}</label>
-                            <InputTextarea id={titles.address} rows="3" cols="30" value={value10} onChange={(e) => setValue10(e.target.value)} />
+                            <InputTextarea id={titles.address} rows="3" cols="30" value={clients.address} onChange={(e) => changeClients('address', e.value)} />
                         </div>
                     </div>
                     <div className="col-12 md:col-6">
@@ -91,8 +93,8 @@ const AddClients = ({ server_host }) => {
                             <InputText id={titles.email} type="text" name={'email'} onChange={(e) => changeClients('email', e.target.value)} value={clients.email} />
                         </div>
                         <div className="field">
-                            <label htmlFor={titles.email}>{titles.email}</label>
-                            <InputText id={titles.email} type="text" name={'email'} onChange={(e) => changeClients('email', e.target.value)} value={clients.email} />
+                            <label htmlFor={titles.analiticAddress}>{titles.analiticAddress}</label>
+                            <InputText id={titles.analiticAddress} type="text" name={'analiticAddress'} onChange={(e) => changeClients('analiticAddress', e.target.value)} value={clients.email} />
                         </div>
                         <div className="field">
                             <label htmlFor={titles.notes}>{titles.notes}</label>
