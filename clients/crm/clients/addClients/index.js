@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputNumber } from 'primereact/inputnumber';
 import CrmDropdown from '../../../crm/forma/dropdown/add';
-import FormaMessages from '../../../crm/forma/message';
 import { Button } from 'primereact/button';
 import { useRouter } from 'next/router';
+import { Toast } from 'primereact/toast';
 
 const AddClients = ({ server_host }) => {
     const [message, setMessage] = useState('');
+    const toast = useRef();
     const [titles, setTitles] = React.useState({
         surname: 'Фамилия',
         name: 'Имя',
@@ -62,7 +63,7 @@ const AddClients = ({ server_host }) => {
             });
             const data = await res.json();
             if (data.ok) {
-                setMessage('Клиент добавлен');
+                setMessage('Клиент сохранен');
             } else {
                 setMessage('Ошибка попробуйте другие данные');
             }
@@ -70,6 +71,12 @@ const AddClients = ({ server_host }) => {
             alert('Сервер не отвечает');
         }
     }
+    const showSuccess = () => {
+        toast.current.show({ severity: 'success', summary: 'Клиент сохранен', life: 3000 });
+        setTimeout(() => {
+            router.push('/crm/clients/');
+        }, 1300);
+    };
 
     return (
         <>
@@ -123,17 +130,17 @@ const AddClients = ({ server_host }) => {
                     </div>
                 </div>
                 <div className="text-center">
+                    <Toast ref={toast} />
                     <Button
                         type="button"
                         label="Сохранить"
                         onClick={() => {
                             fetchAddNewAllData();
-                            router.push('/crm/clients/');
+                            showSuccess();
                         }}
                         icon="pi pi-check"
-                        className="bg-green-400 border-white-alpha-10"
+                        className="bg-green-400 border-white-alpha-10 p-button-success"
                     />
-                    <FormaMessages />
                 </div>
             </div>
         </>
