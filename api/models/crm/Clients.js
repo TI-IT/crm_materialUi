@@ -24,7 +24,7 @@ const schema = new mongoose.Schema(
     organizations: {
       type: String,
     },
-    city: {
+    citys: {
       type: String,
     },
     address: {
@@ -37,5 +37,5 @@ const schema = new mongoose.Schema(
   { autoCreate: true },
 );
 
-const Client = mongoose.model('clients', schema);
-module.exports = Client;
+const Clients = mongoose.model('clients', schema);
+module.exports = Clients;

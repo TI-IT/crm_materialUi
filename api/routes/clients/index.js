@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
   res.json({ ok: true, clients: 'clients' });
 });
 
-router.post('/add', async (req, res) => {
+router.post('/addAllData', async (req, res) => {
   const client = req.body;
   try {
     await save(client);
@@ -18,7 +18,7 @@ router.post('/add', async (req, res) => {
   }
 });
 
-router.get('/clients/getAll', async (req, res) => {
+router.get('/getAll', async (req, res) => {
   const clients = await getAllClients();
   res.json({ ok: true, clients: clients });
 });

@@ -143,18 +143,16 @@ const ClientsTable = ({ server_host }) => {
     return (
         <div className="grid">
             <div className="col-12">
-                <div className="card">
-                    <h5>Клиенты</h5>
-                    <DataTable value={products} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} responsiveLayout="scroll" rowExpansionTemplate={rowExpansionTemplate} dataKey="id" header={header}>
-                        <Column expander style={{ width: '3em' }} />
-                        <Column field="name" header="Name" sortable />
-                        <Column header="Image" body={imageBodyTemplate} />
-                        <Column field="price" header="Price" sortable body={priceBodyTemplate} />
-                        <Column field="category" header="Category" sortable />
-                        <Column field="rating" header="Reviews" sortable body={ratingBodyTemplate} />
-                        <Column field="inventoryStatus" header="Status" sortable body={statusBodyTemplate2} />
-                    </DataTable>
-                </div>
+                <h5>Клиенты</h5>
+                <DataTable value={products} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} responsiveLayout="scroll" rowExpansionTemplate={rowExpansionTemplate} dataKey="id" header={header}>
+                    <Column expander style={{ width: '3em' }} />
+                    <Column field="name" header="Name" sortable />
+                    <Column header="Image" body={imageBodyTemplate} />
+                    <Column field="price" header="Price" sortable body={priceBodyTemplate} />
+                    <Column field="category" header="Category" sortable />
+                    <Column field="rating" header="Reviews" sortable body={ratingBodyTemplate} />
+                    <Column field="inventoryStatus" header="Status" sortable body={statusBodyTemplate2} />
+                </DataTable>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'primereact/dropdown';
-import FormAddOneData from '../../forma/addOneData';
+import FormAddOneData from '../../addOneData';
 
 function crmDropdown({ server_host, getData, change, rerender }) {
     const [getServerData, setGetServerData] = React.useState([]);
@@ -43,7 +43,6 @@ function crmDropdown({ server_host, getData, change, rerender }) {
                         className="p-invalid"
                     />
                 </div>
-
                 <FormAddOneData server_host={server_host} addData={getData} rerender={getAllData} />
             </div>
         </>

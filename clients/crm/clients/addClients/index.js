@@ -2,18 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputNumber } from 'primereact/inputnumber';
-import CrmDropdown from '../../crud/add';
+import CrmDropdown from '../../forma/dropdown/add';
 import { Button } from 'primereact/button';
 
 const AddClients = ({ server_host }) => {
-    const [value3, setValue3] = useState('');
-    const [value1, setValue1] = useState('');
-    const [value7, setValue7] = useState(null);
-    const [value8, setValue8] = useState(null);
-    const [value9, setValue9] = useState(null);
     const [value10, setValue10] = useState('');
     const [message, setMessage] = useState('');
-
     const [titles, setTitles] = React.useState({
         surname: 'Фамилия',
         name: 'Имя',
@@ -34,7 +28,7 @@ const AddClients = ({ server_host }) => {
         email: '',
         analiticAddress: '',
         organizations: '',
-        city: '',
+        citys: '',
         address: '',
         notes: ''
     });
@@ -53,10 +47,32 @@ const AddClients = ({ server_host }) => {
         });
     }
 
+    async function fetchAddNewAllData() {
+        const fethUrl = server_host + '/clients/addAllData';
+        try {
+            const res = await fetch(fethUrl, {
+                method: 'post',
+                credentials: 'include',
+                body: JSON.stringify(clients),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await res.json();
+            if (data.ok) {
+                setMessage('Клиент добавлен');
+            } else {
+                setMessage('Ошибка попробуйте другие данные');
+            }
+        } catch (error) {
+            alert('Сервер не отвечает');
+        }
+    }
+
     return (
         <>
-            <div className="card">
-                <div className="grid p-fluid">
+            <div className="card ">
+                <div className="grid p-fluid text-left">
                     <div className="col-12 md:col-6">
                         <div className="field">
                             <label htmlFor={titles.name}>{titles.name}</label>
@@ -78,7 +94,7 @@ const AddClients = ({ server_host }) => {
                         </div>
                         <div className="field">
                             <label htmlFor={titles.address}>{titles.address}</label>
-                            <InputTextarea id={titles.address} rows="3" cols="30" value={clients.address} onChange={(e) => changeClients('address', e.value)} />
+                            <InputTextarea id={titles.address} rows="3" cols="30" value={clients.address} onChange={(e) => changeClients('address', e.target.value)} />
                         </div>
                     </div>
                     <div className="col-12 md:col-6">
@@ -100,9 +116,20 @@ const AddClients = ({ server_host }) => {
                         </div>
                         <div className="field">
                             <label htmlFor={titles.notes}>{titles.notes}</label>
-                            <InputTextarea id={titles.notes} rows="3" cols="30" value={value10} onChange={(e) => setValue10(e.target.value)} />
+                            <InputTextarea id={titles.notes} rows="3" cols="30" value={clients.notes} onChange={(e) => changeClients('notes', e.target.value)} />
                         </div>
                     </div>
+                </div>
+                <div className="text-center">
+                    <Button
+                        type="button"
+                        label="Сохранить"
+                        onClick={() => {
+                            fetchAddNewAllData();
+                        }}
+                        icon="pi pi-check"
+                        className="bg-green-400 border-white-alpha-10"
+                    />
                 </div>
             </div>
         </>

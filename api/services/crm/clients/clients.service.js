@@ -1,6 +1,6 @@
 const dbConnect = require('../../dbConnect');
 const mongoose = require('mongoose');
-const Client = require('../../../models/crm/Client');
+const Clients = require('../../../models/crm/Clients');
 
 async function save(client) {
   await dbConnect();
@@ -12,8 +12,9 @@ async function save(client) {
     patronymic: client.patronymic,
     phone: client.phone,
     email: client.email,
-    organization: client.organization,
-    city: client.city,
+    analiticAddress: client.analiticAddress,
+    organizations: client.organizations,
+    citys: client.citys,
     address: client.address,
     notes: client.notes,
   });
