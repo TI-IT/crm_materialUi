@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import AddClients from '../../clients/addClients';
 
-function FormAddOneData({ server_host, addData, rerender }) {
+function FormAddAllData({ server_host, addData, rerender }) {
     console.log(addData);
     const [newAddData, setNewAddData] = useState({});
     const [message, setMessage] = useState('');
@@ -51,15 +52,11 @@ function FormAddOneData({ server_host, addData, rerender }) {
     return (
         <>
             <Dialog header={'Введите новую ' + addData} visible={displayBasic} style={{ width: '50vw' }} modal footer={basicDialogFooter} onHide={() => setDisplayBasic(false)}>
-                <div className="field">
-                    <InputText id={addData} type="text" name={'name'} onChange={(e) => setNewAddData(e.target.value)} value={newAddData.name} className="p-invalid text-blue-600 text-2xl " />
-                </div>
+                <AddClients server_host={server_host} />
             </Dialog>
-            <div className="grid  max-h-full">
-                <Button className="bg-green-400 border-white-alpha-10" type="button" icon="pi pi-plus" onClick={() => setDisplayBasic(true)} />
-            </div>
+            <Button label="Создать" className="bg-green-400 border-white-alpha-10" type="button" onClick={() => setDisplayBasic(true)} />
         </>
     );
 }
 
-export default FormAddOneData;
+export default FormAddAllData;
