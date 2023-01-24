@@ -4,7 +4,6 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 
 function FormAddOneData({ server_host, addData, rerender }) {
-    console.log(addData);
     const [newAddData, setNewAddData] = useState({});
     const [message, setMessage] = useState('');
     const [displayBasic, setDisplayBasic] = useState(false);

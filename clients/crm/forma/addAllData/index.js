@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import AddClients from '../../clients/addClients';
+import { useRouter } from 'next/router';
 
-function FormAddAllData({ server_host }) {
+function FormAddAllData({ server_host, rerender, titles }) {
     const [displayBasic, setDisplayBasic] = useState(false);
+    const router = useRouter();
 
-    const basicDialogFooter = <AddClients server_host={server_host} />;
+    function rout() {
+        router.push('/uikit/formlayout/');
+    }
+    // const basicDialogFooter = <AddClients server_host={server_host} rerender={rerender} titles={titles} setDisplayBasic={setDisplayBasic} />;
+    const basicDialogFooter = <Button label="Создать" type="button" onClick={() => rout()} />;
 
     return (
         <>

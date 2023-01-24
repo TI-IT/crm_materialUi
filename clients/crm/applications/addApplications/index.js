@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputNumber } from 'primereact/inputnumber';
-import CrmDropdown from '../../../crm/forma/dropdown/add';
-import FormaMessages from '../../../crm/forma/message';
+import CrmDropdown from '../../forma/dropdown/add';
 import { Button } from 'primereact/button';
-import { useRouter } from 'next/router';
 
 const AddClients = ({ server_host }) => {
+    const [value10, setValue10] = useState('');
     const [message, setMessage] = useState('');
     const [titles, setTitles] = React.useState({
         surname: 'Фамилия',
@@ -33,7 +32,6 @@ const AddClients = ({ server_host }) => {
         address: '',
         notes: ''
     });
-    const router = useRouter();
 
     function changeClients(name, value) {
         return setClients({
@@ -128,12 +126,10 @@ const AddClients = ({ server_host }) => {
                         label="Сохранить"
                         onClick={() => {
                             fetchAddNewAllData();
-                            router.push('/crm/clients/');
                         }}
                         icon="pi pi-check"
                         className="bg-green-400 border-white-alpha-10"
                     />
-                    <FormaMessages />
                 </div>
             </div>
         </>
