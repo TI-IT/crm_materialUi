@@ -19,7 +19,6 @@ ClientsData.dropdown.map((obj) => {
 });
 
 MapObject.push({ autoCreate: true });
-console.log(MapObject);
 const schema = new mongoose.Schema({ MapObject });
 const Clients = mongoose.model('clients', schema);
 module.exports = Clients;

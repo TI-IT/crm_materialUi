@@ -17,7 +17,7 @@ const TableDropdown = ({ server_host, dbProducts, products, setProducts }) => {
     return (
         <>
             <div className="grid p-fluid text-left">
-                {dbProducts.dropdown.map((data, _id) => (
+                {dbProducts?.dropdown.map((data, _id) => (
                     <div key={_id} className="field ml-3 md:col-2">
                         <label htmlFor={data.title}>{data.title}</label>
                         <CrmDropdown getData={data.name} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />

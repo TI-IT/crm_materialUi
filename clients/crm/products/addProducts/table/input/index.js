@@ -17,7 +17,7 @@ const TableInput = ({ dbProducts, products, setProducts }) => {
                         <table>
                             <thead>
                                 <tr>
-                                    {dbProducts.input.map((data, _id) => (
+                                    {dbProducts?.input.map((data, _id) => (
                                         <th key={_id}>
                                             <label htmlFor={data.title}>{data.title}</label>
                                         </th>
@@ -26,7 +26,7 @@ const TableInput = ({ dbProducts, products, setProducts }) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    {dbProducts.input.map((data, _id) => (
+                                    {dbProducts?.input.map((data, _id) => (
                                         <td key={_id}>
                                             <InputText id={data.title} type={data.type} name={data.name} onChange={(e) => changeProducts(data.name, e.target.value)} value={products[data.name]} />
                                         </td>

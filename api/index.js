@@ -42,6 +42,7 @@ app.use(
 );
 
 const indexRouter = require('./routes/index');
+const dataRouter = require('./routes/data');
 const usersRouter = require('./routes/users');
 const clientsRouter = require('./routes/clients');
 const tasksRouter = require('./routes/tasks');
@@ -56,6 +57,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use('*', allRouter);
 app.use('/', indexRouter);
+app.use('/data', dataRouter);
 app.use('/users', usersRouter);
 app.use('/clients', clientsRouter);
 app.use('/tasks', tasksRouter);
