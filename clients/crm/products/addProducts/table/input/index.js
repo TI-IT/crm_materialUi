@@ -1,20 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { InputNumber } from 'primereact/inputnumber';
-import { Button } from 'primereact/button';
-import { useRouter } from 'next/router';
 
-const TableInput = ({ dbProducts }) => {
-    const [message, setMessage] = useState('');
-    const toast = useRef();
-    const [clients, setClients] = React.useState({});
-
-    const router = useRouter();
-
-    function changeClients(name, value) {
-        return setClients({
-            ...clients,
+const TableInput = ({ dbProducts, products, setProducts }) => {
+    function changeProducts(name, value) {
+        return setProducts({
+            ...products,
             [name]: value
         });
     }
@@ -38,7 +28,7 @@ const TableInput = ({ dbProducts }) => {
                                 <tr>
                                     {dbProducts.input.map((data, _id) => (
                                         <td key={_id}>
-                                            <InputText id={data.title} type={data.type} name={data.name} onChange={(e) => changeClients(data.name, e.target.value)} value={clients[data.name]} />
+                                            <InputText id={data.title} type={data.type} name={data.name} onChange={(e) => changeProducts(data.name, e.target.value)} value={products[data.name]} />
                                         </td>
                                     ))}
                                 </tr>

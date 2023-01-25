@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import AddProducts from '../../../crm/products/addProducts';
+import ProductsTable from '../../../crm/products/table';
 
 const Clients = ({ server_host }) => {
     const [message, setMessage] = useState('');
     return (
         <div>
             <h3>Товары</h3>
-            <AddProducts server_host={server_host} />
+            <ProductsTable server_host={server_host} />
         </div>
     );
 };

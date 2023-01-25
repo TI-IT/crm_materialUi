@@ -8,7 +8,7 @@ import getConfig from 'next/config';
 import FormAddAllData from '../../forma/addAllData';
 import { useRouter } from 'next/router';
 
-const ProductsTable = ({ server_host }) => {
+const ClientsTable = ({ server_host }) => {
     const [applications1, setApplications1] = useState(null);
     const [applications2, setApplications2] = useState([]);
     const [applications3, setApplications3] = useState([]);
@@ -152,7 +152,7 @@ const ProductsTable = ({ server_host }) => {
             <div className=" mr-3">
                 <Button icon={allExpanded ? 'pi pi-minus' : 'pi pi-plus'} label={allExpanded ? 'Collapse All' : 'Expand All'} onClick={toggleAll} className="w-11rem" />
             </div>
-            <Button label="Создать" className="bg-green-400 border-white-alpha-10" type="button" onClick={() => router.push('/crm/clients/addClients/')} />
+            <Button label="Создать" className="bg-green-400 border-white-alpha-10" type="button" onClick={() => router.push('/crm/products/addProducts/')} />
         </div>
     );
 
@@ -178,4 +178,4 @@ const ProductsTable = ({ server_host }) => {
     );
 };
 
-export default ProductsTable;
+export default ClientsTable;
