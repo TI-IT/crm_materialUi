@@ -1,41 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { ClientsData } = require('../../data');
 
-const schema = new mongoose.Schema(
-  {
-    surname: {
-      type: String,
+const MapObject = [];
+ClientsData.input.map((obj) => {
+  MapObject.push({
+    [obj.name]: {
+      type: obj.MongoType,
     },
-    name: {
-      type: String,
+  });
+});
+ClientsData.dropdown.map((obj) => {
+  MapObject.push({
+    [obj.name]: {
+      type: obj.MongoType,
     },
-    patronymic: {
-      type: String,
-    },
-    phone: {
-      type: Number,
-    },
-    email: {
-      type: String,
-    },
-    analiticAddress: {
-      type: String,
-    },
-    organizations: {
-      type: String,
-    },
-    citys: {
-      type: String,
-    },
-    address: {
-      type: String,
-    },
-    notes: {
-      type: String,
-    },
-  },
-  { autoCreate: true },
-);
+  });
+});
 
+MapObject.push({ autoCreate: true });
+console.log(MapObject);
+const schema = new mongoose.Schema({ MapObject });
 const Clients = mongoose.model('clients', schema);
 module.exports = Clients;

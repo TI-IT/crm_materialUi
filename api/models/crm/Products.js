@@ -1,41 +1,24 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { ProductsData } = require('../../data');
 
-const schema = new mongoose.Schema(
-  {
-    contractor: {
-      type: String,
+const MapObject = [];
+ProductsData.input.map((obj) => {
+  MapObject.push({
+    [obj.name]: {
+      type: obj.MongoType,
     },
-    type: {
-      type: String,
+  });
+});
+ProductsData.dropdown.map((obj) => {
+  MapObject.push({
+    [obj.name]: {
+      type: obj.MongoType,
     },
-    category: {
-      type: String,
-    },
-    subCategory: {
-      type: String,
-    },
-    name: {
-      type: String,
-    },
-    article: {
-      type: String,
-    },
-    finishing: {
-      type: String,
-    },
-    unit: {
-      type: String,
-    },
-    costPrice: {
-      type: Number,
-    },
-    urlImage: {
-      type: String,
-    },
-  },
-  { autoCreate: true },
-);
+  });
+});
 
+MapObject.push({ autoCreate: true });
+const schema = new mongoose.Schema({ MapObject });
 const Products = mongoose.model('products', schema);
 module.exports = Products;
