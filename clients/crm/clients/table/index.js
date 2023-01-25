@@ -8,7 +8,7 @@ import getConfig from 'next/config';
 import FormAddAllData from '../../forma/addAllData';
 import { useRouter } from 'next/router';
 
-const ClientsTable = ({ server_host, rerender }) => {
+const ClientsTable = ({ server_host }) => {
     const [applications1, setApplications1] = useState(null);
     const [applications2, setApplications2] = useState([]);
     const [applications3, setApplications3] = useState([]);
