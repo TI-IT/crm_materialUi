@@ -7,7 +7,6 @@ function FormAddOneData({ server_host, addData, rerender }) {
     const [newAddData, setNewAddData] = useState({});
     const [message, setMessage] = useState('');
     const [displayBasic, setDisplayBasic] = useState(false);
-    const button = 'Button';
 
     const basicDialogFooter = (
         <Button

@@ -2,22 +2,21 @@ const dbConnect = require('../../dbConnect');
 const mongoose = require('mongoose');
 const TypeProduct = require('../../../models/crm/TypeProduct');
 
-async function saveTypeProduct(data) {
+async function save(data) {
+  console.log(data);
   await dbConnect();
   const collection = mongoose.model('typeProduct');
-  await collection.create({
-    name: data.name,
-  });
+  await collection.create(data);
 }
 
-async function getAllTypeProduct() {
+async function getAll() {
   await dbConnect();
   const collection = mongoose.model('typeProduct');
-  const typeProduct = await collection.find({});
-  return typeProduct;
+  const data = await collection.find({});
+  return data;
 }
 
 module.exports = {
-  saveTypeProduct,
-  getAllTypeProduct,
+  save,
+  getAll,
 };

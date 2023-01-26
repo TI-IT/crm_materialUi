@@ -23,7 +23,14 @@ const Data = {
       { name: 'name', title: 'Имя', type: 'text', MongoType: 'String' },
       { name: 'patronymic', title: 'Отчество', type: 'text', MongoType: 'String' },
       { name: 'phone', title: 'Телефон', type: 'text', MongoType: 'Number' },
-      { name: 'email', title: 'Email', type: 'text', MongoType: 'String' },
+      {
+        name: 'email',
+        title: 'Email',
+        type: 'text',
+        MongoType: 'String',
+        MongoUnique: true,
+        MongoRequire: true,
+      },
       { name: 'address', title: 'Адрес проживания', type: 'text', MongoType: 'String' },
       { name: 'notes', title: 'Примечания', type: 'text', MongoType: 'String' },
     ],
@@ -38,22 +45,76 @@ const Data = {
       { name: 'city', title: 'Город', type: 'text', MongoType: 'String' },
     ],
   },
+  Citys: {
+    input: [
+      {
+        name: 'city',
+        title: 'Город',
+        type: 'text',
+        MongoType: 'String',
+      },
+    ],
+  },
+  TypeProduct: {
+    dropdown: [
+      {
+        name: 'name',
+        title: 'Вид продукта',
+        type: 'text',
+        MongoType: 'String',
+      },
+    ],
+  },
 };
 
-const ModelData = (nameModel = '') => {
-  const MapData = Data.nameModel;
-  // const MapData = nameModel;
+const ModelData = (nameModel) => {
   const ModelsObject = {};
-  console.log(MapData);
-  // MapData.input?.map((obj) => {
-  //   Object.assign(ModelsObject, { [obj.name]: { type: obj.MongoType } });
-  // });
-  // MapData.dropdown?.map((obj) => {
-  //   Object.assign(ModelsObject, { [obj.name]: { type: obj.MongoType } });
-  // });
-
-  // return ModelsObject;
+  if (Data[nameModel]) {
+    Data[nameModel].input?.map((obj) => {
+      const createObj = {};
+      if (obj['MongoType']) {
+        Object.assign(createObj, {
+          type: obj.MongoType,
+        });
+      }
+      if (obj['MongoUnique']) {
+        Object.assign(createObj, {
+          unique: obj.MongoUnique,
+        });
+      }
+      if (obj['MongoRequire']) {
+        Object.assign(createObj, {
+          require: obj.MongoUnique,
+        });
+      }
+      Object.assign(ModelsObject, { [obj.name]: createObj });
+    });
+    Data[nameModel].dropdown?.map((obj) => {
+      const createObj = {};
+      if (obj['MongoType']) {
+        Object.assign(createObj, {
+          type: obj.MongoType,
+        });
+      }
+      if (obj['MongoUnique']) {
+        Object.assign(createObj, {
+          unique: obj.MongoUnique,
+        });
+      }
+      if (obj['MongoRequire']) {
+        Object.assign(createObj, {
+          require: obj.MongoUnique,
+        });
+      }
+      Object.assign(ModelsObject, { [obj.name]: createObj });
+    });
+  } else {
+    console.log('Ошибка в Data Название Объекта не существует!');
+    return;
+  }
+  return ModelsObject;
 };
+
 module.exports = {
   Data,
   ModelData,

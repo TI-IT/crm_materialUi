@@ -1,5 +1,5 @@
 const express = require('express');
-const { save, getAllClients } = require('../../services/crm/clients/clients.service');
+const { save, getAll } = require('../../services/crm/clients/clients.service');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -19,7 +19,7 @@ router.post('/addAllData', async (req, res) => {
 });
 
 router.get('/getAll', async (req, res) => {
-  const clients = await getAllClients();
+  const clients = await getAll();
   res.json({ ok: true, clients: clients });
 });
 module.exports = router;

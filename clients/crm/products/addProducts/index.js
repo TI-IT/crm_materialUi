@@ -1,4 +1,4 @@
-import DbData from '../../dbObjects';
+import DbData from '../../data';
 
 const AddProducts = ({ server_host }) => {
     return (
