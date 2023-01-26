@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { Data } = require('../../data');
 
-const MapData = Data?.Products;
+const MapData = Data?.Clients;
 const ModelsObject = {};
 
 MapData.input?.map((obj) => {
@@ -13,5 +13,5 @@ MapData.dropdown?.map((obj) => {
 });
 
 const schema = new mongoose.Schema(ModelsObject, { autoCreate: true });
-const Products = mongoose.model('products', schema);
-module.exports = Products;
+const Clients = mongoose.model('clients', schema);
+module.exports = Clients;

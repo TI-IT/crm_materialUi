@@ -40,10 +40,21 @@ const Data = {
   },
 };
 
-const ProductsData = Data.Products;
-const ClientsData = Data.Clients;
+const ModelData = (nameModel = '') => {
+  const MapData = Data.nameModel;
+  // const MapData = nameModel;
+  const ModelsObject = {};
+  console.log(MapData);
+  // MapData.input?.map((obj) => {
+  //   Object.assign(ModelsObject, { [obj.name]: { type: obj.MongoType } });
+  // });
+  // MapData.dropdown?.map((obj) => {
+  //   Object.assign(ModelsObject, { [obj.name]: { type: obj.MongoType } });
+  // });
+
+  // return ModelsObject;
+};
 module.exports = {
   Data,
-  ProductsData,
-  ClientsData,
+  ModelData,
 };
