@@ -116,7 +116,7 @@ const ClientsTable = ({ server_host }) => {
 
     const expandAll = () => {
         let _expandedRows = {};
-        clients.forEach((p) => (_expandedRows[`${p._id}`] = true));
+        clients.forEach((p) => (_expandedRows[`${p.id}`] = true));
 
         setExpandedRows(_expandedRows);
         setAllExpanded(true);
@@ -143,12 +143,15 @@ const ClientsTable = ({ server_host }) => {
         return <img src={`${contextPath}/demo/images/plient/${rowData.image}`} onError={(e) => (e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')} alt={rowData.image} className="shadow-2" width={100} />;
     };
 
+    //******************************************************** */
+    //**************************Список заказов titles****************************** */
+    //******************************************************** */
     const rowExpansionTemplate = (data) => {
         return (
-            <div className="orders-subtable">
+            <div className="orders-subtable bg-blue-300">
                 <h5>Orders for {data.name}</h5>
                 <DataTable value={data.orders} responsiveLayout="scroll">
-                    <Column field="_id" header="_Id" sortable></Column>
+                    <Column field="_id" header="Список заказов" sortable></Column>
                     <Column header="Image" body={imageBodyTemplate} />
                     <Column field="application" header="Application" sortable></Column>
                     <Column field="date" header="Date" sortable></Column>
@@ -173,7 +176,7 @@ const ClientsTable = ({ server_host }) => {
         <div className="grid">
             <div className="col-12">
                 {message}
-                <DataTable value={clients} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} responsiveLayout="scroll" rowExpansionTemplate={rowExpansionTemplate} dataKey="_id" header={header}>
+                <DataTable value={clients} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} responsiveLayout="scroll" rowExpansionTemplate={rowExpansionTemplate} dataKey="id" header={header}>
                     <Column expander style={{ width: '3em' }} />
                     {dbDataClientsTitles.map((obj, id) => (
                         <Column key={id} field={obj.name} header={obj.title} sortable />
