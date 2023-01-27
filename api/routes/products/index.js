@@ -18,6 +18,17 @@ router.post('/addOneData', async (req, res) => {
   }
 });
 
+router.post('/addAllData', async (req, res) => {
+  const client = req.body;
+  try {
+    await save(client);
+    res.json({ ok: true });
+  } catch (e) {
+    console.error(e);
+    res.json({ ok: false });
+  }
+});
+
 router.get('/getAllData', async (req, res) => {
   const data = await getAll();
   res.json({ ok: true, data: data });

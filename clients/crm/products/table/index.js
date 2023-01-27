@@ -8,7 +8,7 @@ import getConfig from 'next/config';
 import FormAddAllData from '../../forma/addAllData';
 import { useRouter } from 'next/router';
 
-const ClientsTable = ({ server_host }) => {
+const ProductsTable = ({ server_host }) => {
     const [applications1, setApplications1] = useState(null);
     const [applications2, setApplications2] = useState([]);
     const [applications3, setApplications3] = useState([]);
@@ -16,30 +16,20 @@ const ClientsTable = ({ server_host }) => {
     const [loading1, setLoading1] = useState(true);
     const [loading2, setLoading2] = useState(true);
     const [idFrozen, setIdFrozen] = useState(false);
-    const [clients, setClients] = useState([]);
+    const [products, setProducts] = useState([]);
     const [globalFilterValue1, setGlobalFilterValue1] = useState('');
     const [expandedRows, setExpandedRows] = useState(null);
     const [allExpanded, setAllExpanded] = useState(false);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     const [message, setMessage] = useState('');
+    const [dbDataProductsTitles, setDbDataProductsTitles] = useState([]);
+
     const router = useRouter();
-    const [titles, setTitles] = React.useState({
-        surname: 'Фамилия',
-        name: 'Имя',
-        patronymic: 'Отчество',
-        phone: 'Телефон',
-        email: 'Email',
-        analiticAddress: 'Откуда о нас узнали?',
-        organizations: 'Организация',
-        city: 'Город',
-        address: 'Адрес проживания',
-        notes: 'Примечания'
-    });
 
     const applicationService = new ApplicationService();
 
-    async function getAllClientsData(text) {
-        fetch(server_host + '/clients/getAll', {
+    async function getAllProductsData(text) {
+        fetch(server_host + '/products/getAll', {
             method: 'get',
             credentials: 'include'
         })
@@ -48,14 +38,15 @@ const ClientsTable = ({ server_host }) => {
             })
             .then((data) => {
                 if (data.ok) {
-                    setClients(data.clients);
+                    setProducts(data.products);
                     setMessage(text);
                 }
             });
     }
 
     useEffect(() => {
-        getAllClientsData();
+        getAllDataProductsTitles();
+        getAllProductsData();
         setLoading2(true);
         applicationService.getApplicationsLarge().then((data) => {
             setApplications1(getApplications(data));
@@ -69,6 +60,28 @@ const ClientsTable = ({ server_host }) => {
 
         initFilters1();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    async function getAllDataProductsTitles() {
+        const array = [];
+        await fetch(server_host + '/data/getAllData', {
+            method: 'get',
+            credentials: 'include'
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                if (data.ok) {
+                    data.data.Products.input?.map((obj) => {
+                        array.push(obj);
+                    });
+                    data.data.Products.dropdown?.map((obj) => {
+                        array.push(obj);
+                    });
+                    setDbDataProductsTitles(array);
+                }
+            });
+    }
 
     const getApplications = (data) => {
         return [...(data || [])].map((d) => {
@@ -103,7 +116,7 @@ const ClientsTable = ({ server_host }) => {
 
     const expandAll = () => {
         let _expandedRows = {};
-        clients.forEach((p) => (_expandedRows[`${p._id}`] = true));
+        products.forEach((p) => (_expandedRows[`${p.id}`] = true));
 
         setExpandedRows(_expandedRows);
         setAllExpanded(true);
@@ -130,12 +143,15 @@ const ClientsTable = ({ server_host }) => {
         return <img src={`${contextPath}/demo/images/plient/${rowData.image}`} onError={(e) => (e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')} alt={rowData.image} className="shadow-2" width={100} />;
     };
 
+    //******************************************************** */
+    //**************************Список заказов titles****************************** */
+    //******************************************************** */
     const rowExpansionTemplate = (data) => {
         return (
-            <div className="orders-subtable">
+            <div className="orders-subtable bg-blue-300">
                 <h5>Orders for {data.name}</h5>
                 <DataTable value={data.orders} responsiveLayout="scroll">
-                    <Column field="_id" header="_Id" sortable></Column>
+                    <Column field="_id" header="Список заказов" sortable></Column>
                     <Column header="Image" body={imageBodyTemplate} />
                     <Column field="application" header="Application" sortable></Column>
                     <Column field="date" header="Date" sortable></Column>
@@ -160,22 +176,15 @@ const ClientsTable = ({ server_host }) => {
         <div className="grid">
             <div className="col-12">
                 {message}
-                <DataTable value={clients} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} responsiveLayout="scroll" rowExpansionTemplate={rowExpansionTemplate} dataKey="_id" header={header}>
+                <DataTable value={products} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} responsiveLayout="scroll" rowExpansionTemplate={rowExpansionTemplate} dataKey="id" header={header}>
                     <Column expander style={{ width: '3em' }} />
-                    <Column field="surname" header={titles.surname} sortable />
-                    <Column field="name" header={titles.name} sortable />
-                    <Column field="patronymic" header={titles.patronymic} sortable />
-                    <Column field="phone" header={titles.phone} sortable />
-                    <Column field="email" header={titles.email} sortable />
-                    <Column field="analiticAddress" header={titles.analiticAddress} sortable />
-                    <Column field="organizations" header={titles.organizations} sortable />
-                    <Column field="city" header={titles.city} sortable />
-                    <Column field="address" header={titles.address} sortable />
-                    <Column field="notes" header={titles.notes} sortable />
+                    {dbDataProductsTitles.map((obj, id) => (
+                        <Column key={id} field={obj.name} header={obj.title} sortable />
+                    ))}
                 </DataTable>
             </div>
         </div>
     );
 };
 
-export default ClientsTable;
+export default ProductsTable;
