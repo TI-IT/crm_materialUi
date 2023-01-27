@@ -1,9 +1,9 @@
-import DbData from '../../data';
+import DataProducts from '../../data/products';
 
 const AddProducts = ({ server_host }) => {
     return (
         <>
-            <DbData server_host={server_host} />
+            <DataProducts server_host={server_host} />
         </>
     );
 };

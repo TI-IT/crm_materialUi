@@ -22,9 +22,19 @@ const ClientsTable = ({ server_host }) => {
     const [allExpanded, setAllExpanded] = useState(false);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     const [message, setMessage] = useState('');
-    const [dbDataClientsTitles, setDbDataClientsTitles] = useState([]);
-
     const router = useRouter();
+    const [titles, setTitles] = React.useState({
+        surname: 'Фамилия',
+        name: 'Имя',
+        patronymic: 'Отчество',
+        phone: 'Телефон',
+        email: 'Email',
+        analiticAddress: 'Откуда о нас узнали?',
+        organizations: 'Организация',
+        city: 'Город',
+        address: 'Адрес проживания',
+        notes: 'Примечания'
+    });
 
     const applicationService = new ApplicationService();
 
@@ -45,7 +55,6 @@ const ClientsTable = ({ server_host }) => {
     }
 
     useEffect(() => {
-        getAllDataClientsTitles();
         getAllClientsData();
         setLoading2(true);
         applicationService.getApplicationsLarge().then((data) => {
@@ -60,28 +69,6 @@ const ClientsTable = ({ server_host }) => {
 
         initFilters1();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-    async function getAllDataClientsTitles() {
-        const array = [];
-        await fetch(server_host + '/data/getAllData', {
-            method: 'get',
-            credentials: 'include'
-        })
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                if (data.ok) {
-                    data.data.Clients.input?.map((obj) => {
-                        array.push(obj);
-                    });
-                    data.data.Clients.dropdown?.map((obj) => {
-                        array.push(obj);
-                    });
-                    setDbDataClientsTitles(array);
-                }
-            });
-    }
 
     const getApplications = (data) => {
         return [...(data || [])].map((d) => {
@@ -175,9 +162,16 @@ const ClientsTable = ({ server_host }) => {
                 {message}
                 <DataTable value={clients} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} responsiveLayout="scroll" rowExpansionTemplate={rowExpansionTemplate} dataKey="_id" header={header}>
                     <Column expander style={{ width: '3em' }} />
-                    {dbDataClientsTitles.map((obj, id) => (
-                        <Column key={id} field={obj.name} header={obj.title} sortable />
-                    ))}
+                    <Column field="surname" header={titles.surname} sortable />
+                    <Column field="name" header={titles.name} sortable />
+                    <Column field="patronymic" header={titles.patronymic} sortable />
+                    <Column field="phone" header={titles.phone} sortable />
+                    <Column field="email" header={titles.email} sortable />
+                    <Column field="analiticAddress" header={titles.analiticAddress} sortable />
+                    <Column field="organizations" header={titles.organizations} sortable />
+                    <Column field="city" header={titles.city} sortable />
+                    <Column field="address" header={titles.address} sortable />
+                    <Column field="notes" header={titles.notes} sortable />
                 </DataTable>
             </div>
         </div>
