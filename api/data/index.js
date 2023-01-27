@@ -33,7 +33,6 @@ const Data = {
         title: 'Email',
         type: 'text',
         MongoType: 'String',
-        MongoUnique: true,
       },
       { name: 'address', title: 'Адрес проживания', type: 'text', MongoType: 'String' },
       { name: 'notes', title: 'Примечания', type: 'text', MongoType: 'String' },

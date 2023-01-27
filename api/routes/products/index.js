@@ -1,17 +1,16 @@
 const express = require('express');
 
-const { save, getAllProducts } = require('../../services/crm/products/products.service.js');
+const { save, getAll } = require('../../services/crm/products/products.service');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.send('Products');
+  res.send('products');
 });
 
-router.post('/add', async (req, res) => {
-  const product = req.body;
+router.post('/addOneData', async (req, res) => {
+  const data = req.body;
   try {
-    await save(product);
-
+    await save(data);
     res.json({ ok: true });
   } catch (e) {
     console.error(e);
@@ -19,9 +18,9 @@ router.post('/add', async (req, res) => {
   }
 });
 
-router.get('/get/all', async (req, res) => {
-  const products = await getAllProducts();
-  res.json({ ok: true, products: products });
+router.get('/getAllData', async (req, res) => {
+  const data = await getAll();
+  res.json({ ok: true, data: data });
 });
 
 module.exports = router;
