@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { ModelData } = require('../../data');
-const ModelsObject = ModelData('Citys');
+const ModelsObject = ModelData('FinishingProduct');
 const schema = new mongoose.Schema(ModelsObject, { autoCreate: true });
-const Citys = mongoose.model('citys', schema);
-module.exports = Citys;
+const FinishingProduct = mongoose.model('finishingProduct', schema);
+module.exports = FinishingProduct;

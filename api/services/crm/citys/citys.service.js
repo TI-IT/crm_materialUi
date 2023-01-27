@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const Citys = require('../../../models/crm/Citys');
 
 async function saveCity(data) {
-  console.log(data);
   await dbConnect();
   const collection = mongoose.model('citys');
   await collection.create({

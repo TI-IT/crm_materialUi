@@ -53,6 +53,9 @@ const citysRouter = require('./routes/citys');
 const organizationsRouter = require('./routes/organizations');
 const analiticAddressRouter = require('./routes/analiticAddress');
 const applicationsRouter = require('./routes/applications');
+const categoryProductRouter = require('./routes/categoryProduct');
+const categoryChildrenProductRouter = require('./routes/categoryChildrenProduct');
+const finishingProductRouter = require('./routes/finishingProduct');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -68,6 +71,9 @@ app.use('/citys', citysRouter);
 app.use('/organizations', organizationsRouter);
 app.use('/analiticAddress', analiticAddressRouter);
 app.use('/applications', applicationsRouter);
+app.use('/categoryProduct', categoryProductRouter);
+app.use('/categoryChildrenProduct', categoryChildrenProductRouter);
+app.use('/finishingProduct', finishingProductRouter);
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
