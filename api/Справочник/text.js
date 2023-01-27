@@ -20,3 +20,7 @@ function writeJson(data, writePath) {
 module.exports = {
   writeJson,
 };
+
+{
+  status === 'loading' ? sceletons : products;
+}
