@@ -56,6 +56,9 @@ const applicationsRouter = require('./routes/applications');
 const categoryProductRouter = require('./routes/categoryProduct');
 const categoryChildrenProductRouter = require('./routes/categoryChildrenProduct');
 const finishingProductRouter = require('./routes/finishingProduct');
+const supplierProductRouter = require('./routes/supplierProduct');
+const unitRouter = require('./routes/unit');
+const markupRouter = require('./routes/markup');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -74,6 +77,9 @@ app.use('/applications', applicationsRouter);
 app.use('/categoryProduct', categoryProductRouter);
 app.use('/categoryChildrenProduct', categoryChildrenProductRouter);
 app.use('/finishingProduct', finishingProductRouter);
+app.use('/supplierProduct', supplierProductRouter);
+app.use('/unit', unitRouter);
+app.use('/markup', markupRouter);
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);

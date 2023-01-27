@@ -17,7 +17,7 @@ const Data = {
         MongoType: 'String',
       },
       { name: 'finishingProduct', title: 'Отделка', type: 'text', MongoType: 'String' },
-      { name: 'supplier', title: 'Поставщик', type: 'text', MongoType: 'String' },
+      { name: 'supplierProduct', title: 'Поставщик', type: 'text', MongoType: 'String' },
       { name: 'unit', title: 'Ед. изм.', type: 'text', MongoType: 'String' },
       { name: 'markup', title: 'Наценка', type: 'number', MongoType: 'Number' },
     ],
@@ -98,6 +98,42 @@ const Data = {
     ],
   },
   FinishingProduct: {
+    dropdown: [
+      {
+        name: 'name',
+        title: 'Вид продукта',
+        type: 'text',
+        MongoType: 'String',
+        MongoUnique: true,
+        MongoRequire: true,
+      },
+    ],
+  },
+  SupplierProduct: {
+    dropdown: [
+      {
+        name: 'name',
+        title: 'Вид продукта',
+        type: 'text',
+        MongoType: 'String',
+        MongoUnique: true,
+        MongoRequire: true,
+      },
+    ],
+  },
+  Unit: {
+    dropdown: [
+      {
+        name: 'name',
+        title: 'Вид продукта',
+        type: 'text',
+        MongoType: 'String',
+        MongoUnique: true,
+        MongoRequire: true,
+      },
+    ],
+  },
+  Markup: {
     dropdown: [
       {
         name: 'name',

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { ModelData } = require('../../data');
-const ModelsObject = ModelData('Markup');
+const ModelsObject = ModelData('CategoryChildrenProduct');
 const schema = new mongoose.Schema(ModelsObject, { autoCreate: true });
-const Markup = mongoose.model('markup', schema);
-module.exports = Markup;
+const CategoryChildrenProduct = mongoose.model('categoryChildrenProduct', schema);
+module.exports = CategoryChildrenProduct;
