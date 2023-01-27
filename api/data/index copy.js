@@ -2,6 +2,7 @@ const Data = {
   Products: {
     input: [
       { name: 'article', title: 'Артикул', type: 'text', MongoType: 'String' },
+      { name: 'article', title: 'Артикул', type: 'text', MongoType: 'String' },
       { name: 'productName', title: 'Наименование', type: 'text', MongoType: 'String' },
       { name: 'costPrice', title: 'Себестоимость', type: 'text', MongoType: 'String' },
       { name: 'sellingPrice', title: 'Продажная цена', type: 'text', MongoType: 'String' },
