@@ -39,7 +39,7 @@ const ProductsTable = ({ server_host }) => {
             .then((data) => {
                 if (data.ok) {
                     const dataArray = data.data;
-                    setProducts(dataArray.products);
+                    setProducts(dataArray);
                     setMessage(text);
                 }
             });

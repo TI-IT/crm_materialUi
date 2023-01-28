@@ -40,7 +40,7 @@ const Data = {
     dropdown: [
       {
         name: 'analiticAddress',
-        title: 'Откуда о нас узнали77777777?',
+        title: 'Откуда о нас узнали?',
         type: 'text',
         MongoType: 'String',
       },
