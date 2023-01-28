@@ -31,7 +31,7 @@ app.use(
     secret: 'nvebiruvwnerfqruec3cetiit',
     store: MongoStore.create({
       mongoUrl: mongoUrl,
-      ttl: 60 * 24 * 60 * 60,
+      ttl: 90 * 24 * 60 * 60,
     }),
     resave: false,
     saveUninitialized: false,

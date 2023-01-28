@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { Data } = require('../data');
-const { getParser } = require('../../services/parser.services');
 const { getParserHref } = require('../../services/parser/getHref');
 
 router.get('/', (req, res) => {

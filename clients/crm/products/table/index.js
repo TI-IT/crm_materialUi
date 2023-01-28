@@ -38,9 +38,7 @@ const ProductsTable = ({ server_host }) => {
             })
             .then((data) => {
                 if (data.ok) {
-                    // console.log(data.data);
                     const dataArray = data.data;
-                    // console.log(dataArray.products);
                     setProducts(dataArray.products);
                     setMessage(text);
                 }

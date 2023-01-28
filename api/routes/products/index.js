@@ -1,6 +1,11 @@
 const express = require('express');
-
-const { save, getAll, getAllGoogle } = require('../../services/crm/products/products.service');
+const fs = require('fs');
+const path = require('path');
+const {
+  save,
+  getAll,
+  getAllDataGoogleJson,
+} = require('../../services/crm/products/products.service');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -35,7 +40,8 @@ router.get('/getAllData', async (req, res) => {
 });
 
 router.get('/getAllDataGoogle', async (req, res) => {
-  const data = await getAllGoogle();
+  const data = await getAllDataGoogleJson();
+  console.log(data);
   res.json({ ok: true, data: data });
 });
 
