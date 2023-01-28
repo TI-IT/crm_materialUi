@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { save, getAll } = require('../../services/crm/products/products.service');
+const { save, getAll, getAllGoogle } = require('../../services/crm/products/products.service');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -31,6 +31,11 @@ router.post('/addAllData', async (req, res) => {
 
 router.get('/getAllData', async (req, res) => {
   const data = await getAll();
+  res.json({ ok: true, data: data });
+});
+
+router.get('/getAllDataGoogle', async (req, res) => {
+  const data = await getAllGoogle();
   res.json({ ok: true, data: data });
 });
 

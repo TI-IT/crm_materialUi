@@ -15,7 +15,21 @@ async function getAll() {
   return data;
 }
 
+async function getAllGoogle() {
+  let url =
+    'https://script.google.com/macros/s/AKfycbzpzwWIeC6VXM6raZBB8YL08kRZpM2goz3UpKb_x4GLBnhygNroVbDKrQxb0A0feEb8/exec?products=all';
+  const data = fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    });
+  return data;
+}
+
 module.exports = {
   save,
   getAll,
+  getAllGoogle,
 };

@@ -23,13 +23,13 @@ const ProductsTable = ({ server_host }) => {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     const [message, setMessage] = useState('');
     const [dbDataProductsTitles, setDbDataProductsTitles] = useState([]);
-
+    console.log(products);
     const router = useRouter();
 
     const applicationService = new ApplicationService();
 
     async function getAllProductsData(text) {
-        fetch(server_host + '/products/getAll', {
+        fetch(server_host + '/products/getAllDataGoogle', {
             method: 'get',
             credentials: 'include'
         })
@@ -38,7 +38,10 @@ const ProductsTable = ({ server_host }) => {
             })
             .then((data) => {
                 if (data.ok) {
-                    setProducts(data.products);
+                    // console.log(data.data);
+                    const dataArray = data.data;
+                    // console.log(dataArray.products);
+                    setProducts(dataArray.products);
                     setMessage(text);
                 }
             });
