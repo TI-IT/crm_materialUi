@@ -79,47 +79,25 @@ const AddOffer = ({ server_host }) => {
 
     return (
         <>
-            <div className="grid ">
-                <div className="col-4">
-                    <div className="card">
-                        <TreeSelect value={selectedNode} onChange={(e) => setSelectedNode(e.value)} options={treeSelectNodes} placeholder="Select Item"></TreeSelect>
+            <div className="grid p-fluid text-left">
+                <div className="col-12 md:col-6">
+                    <div className="field">
+                        <label htmlFor={titles.analiticAddress}>{titles.analiticAddress}</label>
+                        <CrmDropdown getData={'analiticAddress'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
                     </div>
                 </div>
 
-                <div className="grid p-fluid text-left">
-                    <div className="col-12 md:col-6">
-                        <div className="field">
-                            <label htmlFor={titles.analiticAddress}>{titles.analiticAddress}</label>
-                            <CrmDropdown getData={'analiticAddress'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
-                        </div>
-
-                        <div className="field">
-                            <label htmlFor={titles.city}>{titles.city}</label>
-                            <CrmDropdown getData={'citys'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
-                        </div>
-                    </div>
-                    <div className="col-12 md:col-6">
-                        <div className="field">
-                            <label htmlFor={titles.organizations}>{titles.organizations}</label>
-                            <CrmDropdown getData={'organizations'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
-                        </div>
-                        <div className="field">
-                            <label htmlFor={titles.notes}>{titles.notes}</label>
-                            <InputTextarea id={titles.notes} rows="3" cols="30" value={clients.notes} onChange={(e) => changeClients('notes', e.target.value)} />
-                        </div>
-                    </div>
-                    <div className="text-center">
-                        <Button
-                            type="button"
-                            label="Сохранить"
-                            onClick={() => {
-                                fetchAddNewAllData();
-                            }}
-                            icon="pi pi-check"
-                            className="bg-green-400 border-white-alpha-10"
-                        />
-                    </div>
-                </div>
+                {/* <div className="text-center">
+                    <Button
+                        type="button"
+                        label="Сохранить"
+                        onClick={() => {
+                            fetchAddNewAllData();
+                        }}
+                        icon="pi pi-check"
+                        className="bg-green-400 border-white-alpha-10"
+                    />
+                </div> */}
             </div>
         </>
     );

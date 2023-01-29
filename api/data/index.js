@@ -55,7 +55,33 @@ const Data = {
         MongoType: 'String',
       },
       { name: 'organizations', title: 'Организация', type: 'text', MongoType: 'String' },
-      { name: 'city', title: 'Город', type: 'text', MongoType: 'String' },
+      { name: 'citys', title: 'Город', type: 'text', MongoType: 'String' },
+    ],
+  },
+  Offer: {
+    input: [
+      { name: 'surname', title: 'Фамилия', type: 'text', MongoType: 'String' },
+      { name: 'name', title: 'Имя', type: 'text', MongoType: 'String' },
+      { name: 'patronymic', title: 'Отчество', type: 'text', MongoType: 'String' },
+      { name: 'phone', title: 'Телефон', type: 'text', MongoType: 'Number', MongoUnique: true },
+      {
+        name: 'email',
+        title: 'Email',
+        type: 'text',
+        MongoType: 'String',
+      },
+      { name: 'address', title: 'Адрес проживания', type: 'text', MongoType: 'String' },
+      { name: 'notes', title: 'Примечания', type: 'text', MongoType: 'String' },
+    ],
+    dropdown: [
+      {
+        name: 'catalog',
+        title: 'Каталог товаров',
+        type: 'text',
+        MongoType: 'String',
+      },
+      { name: 'organizations', title: 'Организация', type: 'text', MongoType: 'String' },
+      { name: 'citys', title: 'Город', type: 'text', MongoType: 'String' },
     ],
   },
   // Город
@@ -74,6 +100,8 @@ const Data = {
   Unit: dropdownMongooseObject,
   // Наценка
   Markup: dropdownMongooseObject,
+  // Каталог
+  Catalog: dropdownMongooseObject,
 };
 
 const ModelData = (nameModel) => {
