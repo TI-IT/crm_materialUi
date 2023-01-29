@@ -43,7 +43,7 @@ const FetchOffer = ({ server_host, dbOffer }) => {
         <>
             <TableDropdown server_host={server_host} dbOffer={dbOffer} setOffers={setOffers} offer={offer} />
             <TableInput server_host={server_host} dbOffer={dbOffer} setOffers={setOffers} offer={offer} />
-            <TreeSelectCrm server_host={server_host} value={setTreeSelectCrmValue} />
+            <TreeSelectCrm server_host={server_host} value={setTreeSelectCrmValue} getData="offer" />
             <h1>{treeSelectCrmValue}</h1>
             <div className="text-center">
                 <Toast ref={toast} />

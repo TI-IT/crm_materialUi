@@ -19,6 +19,7 @@ const Data = {
     ],
     dropdown: [
       { name: 'typeProduct', title: 'Вид продукта', type: 'text', MongoType: 'String' },
+      { name: 'catalog', title: 'Каталог товаров', type: 'text', MongoType: 'String' },
       { name: 'categoryProduct', title: 'Категория', type: 'text', MongoType: 'String' },
       {
         name: 'categoryChildrenProduct',

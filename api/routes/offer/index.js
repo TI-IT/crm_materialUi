@@ -1,5 +1,6 @@
 const express = require('express');
 
+const { getAllTreeSelectData } = require('../../services/crm/offer/treeSelectData.service');
 const { save, getAll } = require('../../services/crm/offer/offer.service');
 const router = express.Router();
 
@@ -20,6 +21,11 @@ router.post('/addOneData', async (req, res) => {
 
 router.get('/getAllData', async (req, res) => {
   const data = await getAll();
+  res.json({ ok: true, data: data });
+});
+
+router.get('/getTreeSelectData', async (req, res) => {
+  const data = await getAllTreeSelectData();
   res.json({ ok: true, data: data });
 });
 

@@ -3,17 +3,15 @@ import { useRouter } from 'next/router';
 import { TreeSelect } from 'primereact/treeselect';
 import { NodeService } from '../../service/NodeService';
 
-const TreeSelectCrm = ({ server_host, value }) => {
+const TreeSelectCrm = ({ server_host, value, getData }) => {
     const [valueProps, setValueProps] = useState('');
     const [selectedNode, setSelectedNode] = useState(null);
     const [treeSelectNodes, setTreeSelectNodes] = useState(null);
     const [offer, setOffers] = React.useState({});
     const toast = useRef();
-    const router = useRouter();
 
     useEffect(() => {
-        const nodeService = new NodeService();
-        nodeService.getTreeNodes().then((data) => setTreeSelectNodes(data));
+        getTreeSelectData();
     }, []);
     const array = [];
     if (treeSelectNodes) {
@@ -36,8 +34,24 @@ const TreeSelectCrm = ({ server_host, value }) => {
         });
     }
 
+    async function getTreeSelectData() {
+        fetch(server_host + '/' + getData + '/getTreeSelectData', {
+            method: 'get',
+            credentials: 'include'
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                if (data.ok) {
+                    console.log(data.data);
+                    setTreeSelectNodes(data.data.root);
+                }
+            });
+    }
+
     async function fetchAddNewAllData() {
-        const fethUrl = server_host + '/offer/addAllData';
+        const fethUrl = server_host + '/' + { getData } + '/_____________';
         try {
             const res = await fetch(fethUrl, {
                 method: 'post',
