@@ -61,6 +61,7 @@ const unitRouter = require('./routes/unit');
 const markupRouter = require('./routes/markup');
 const parserRouter = require('./routes/parser');
 const catalogRouter = require('./routes/catalog');
+const offerRouter = require('./routes/offer');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -84,6 +85,7 @@ app.use('/unit', unitRouter);
 app.use('/markup', markupRouter);
 app.use('/parser', parserRouter);
 app.use('/catalog', catalogRouter);
+app.use('/offer', offerRouter);
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);

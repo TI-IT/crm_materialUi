@@ -1,12 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import TableDropdown from '../table/dropdown';
 import TableInput from '../table/input';
 import { Button } from 'primereact/button';
 import { useRouter } from 'next/router';
 import { Toast } from 'primereact/toast';
+import TreeSelectCrm from '../../../forma/treeSelect';
 
 const FetchOffer = ({ server_host, dbOffer }) => {
-    const [offer, setOffers] = React.useState({});
+    const [offer, setOffers] = useState({});
+    const [treeSelectCrmValue, setTreeSelectCrmValue] = useState('');
     const toast = useRef();
     const router = useRouter();
 
@@ -41,6 +43,8 @@ const FetchOffer = ({ server_host, dbOffer }) => {
         <>
             <TableDropdown server_host={server_host} dbOffer={dbOffer} setOffers={setOffers} offer={offer} />
             <TableInput server_host={server_host} dbOffer={dbOffer} setOffers={setOffers} offer={offer} />
+            <TreeSelectCrm server_host={server_host} value={setTreeSelectCrmValue} />
+            <h1>{treeSelectCrmValue}</h1>
             <div className="text-center">
                 <Toast ref={toast} />
                 <Button
