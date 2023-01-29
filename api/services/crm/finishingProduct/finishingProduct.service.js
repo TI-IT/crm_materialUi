@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const FinishingProduct = require('../../../models/crm/FinishingProduct');
 
 async function save(data) {
+  console.log(data);
   await dbConnect();
   const collection = mongoose.model('finishingProduct');
   await collection.create(data);

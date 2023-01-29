@@ -4,10 +4,14 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import { InputNumber } from 'primereact/inputnumber';
 import CrmDropdown from '../../forma/dropdown/add';
 import { Button } from 'primereact/button';
+import { TreeSelect } from 'primereact/treeselect';
+import { NodeService } from '../../../crm/offer/service/NodeService';
 
-const AddApplications = ({ server_host }) => {
+const AddOffer = ({ server_host }) => {
     const [value10, setValue10] = useState('');
     const [message, setMessage] = useState('');
+    const [selectedNode, setSelectedNode] = useState(null);
+    const [treeSelectNodes, setTreeSelectNodes] = useState(null);
     const [titles, setTitles] = React.useState({
         surname: 'Фамилия',
         name: 'Имя',
@@ -32,6 +36,10 @@ const AddApplications = ({ server_host }) => {
         address: '',
         notes: ''
     });
+    useEffect(() => {
+        const nodeService = new NodeService();
+        nodeService.getTreeNodes().then((data) => setTreeSelectNodes(data));
+    }, []);
 
     function changeClients(name, value) {
         return setClients({
@@ -71,18 +79,15 @@ const AddApplications = ({ server_host }) => {
 
     return (
         <>
-            <div className="card ">
+            <div className="grid ">
+                <div className="col-4">
+                    <div className="card">
+                        <TreeSelect value={selectedNode} onChange={(e) => setSelectedNode(e.value)} options={treeSelectNodes} placeholder="Select Item"></TreeSelect>
+                    </div>
+                </div>
+
                 <div className="grid p-fluid text-left">
                     <div className="col-12 md:col-6">
-                        <div className="field">
-                            <label htmlFor={titles.name}>{titles.name}</label>
-                            <InputText id={titles.name} type="text" name={'name'} onChange={(e) => changeClients('name', e.target.value)} value={clients.name} className="p-invalid" />
-                        </div>
-
-                        <div className="field">
-                            <label htmlFor={titles.phone}>{titles.phone}</label>
-                            <InputNumber inputId={titles.phone} onChange={(e) => changeClients('phone', e.value)} value={clients.phone} className="p-invalid" />
-                        </div>
                         <div className="field">
                             <label htmlFor={titles.analiticAddress}>{titles.analiticAddress}</label>
                             <CrmDropdown getData={'analiticAddress'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
@@ -92,24 +97,8 @@ const AddApplications = ({ server_host }) => {
                             <label htmlFor={titles.city}>{titles.city}</label>
                             <CrmDropdown getData={'citys'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
                         </div>
-                        <div className="field">
-                            <label htmlFor={titles.address}>{titles.address}</label>
-                            <InputTextarea id={titles.address} rows="3" cols="30" value={clients.address} onChange={(e) => changeClients('address', e.target.value)} />
-                        </div>
                     </div>
                     <div className="col-12 md:col-6">
-                        <div className="field">
-                            <label htmlFor={titles.surname}>{titles.surname}</label>
-                            <InputText id={titles.surname} type="text" name={'surname'} onChange={(e) => changeClients('surname', e.target.value)} value={clients.surname} />
-                        </div>
-                        <div className="field">
-                            <label htmlFor={titles.patronymic}>{titles.patronymic}</label>
-                            <InputText id={titles.patronymic} type="text" name={'patronymic'} onChange={(e) => changeClients('patronymic', e.target.value)} value={clients.patronymic} />
-                        </div>
-                        <div className="field">
-                            <label htmlFor={titles.email}>{titles.email}</label>
-                            <InputText id={titles.email} type="text" name={'email'} onChange={(e) => changeClients('email', e.target.value)} value={clients.email} />
-                        </div>
                         <div className="field">
                             <label htmlFor={titles.organizations}>{titles.organizations}</label>
                             <CrmDropdown getData={'organizations'} server_host={server_host} change={crmDropdownGetObject} rerender={setMessage} />
@@ -119,21 +108,21 @@ const AddApplications = ({ server_host }) => {
                             <InputTextarea id={titles.notes} rows="3" cols="30" value={clients.notes} onChange={(e) => changeClients('notes', e.target.value)} />
                         </div>
                     </div>
-                </div>
-                <div className="text-center">
-                    <Button
-                        type="button"
-                        label="Сохранить"
-                        onClick={() => {
-                            fetchAddNewAllData();
-                        }}
-                        icon="pi pi-check"
-                        className="bg-green-400 border-white-alpha-10"
-                    />
+                    <div className="text-center">
+                        <Button
+                            type="button"
+                            label="Сохранить"
+                            onClick={() => {
+                                fetchAddNewAllData();
+                            }}
+                            icon="pi pi-check"
+                            className="bg-green-400 border-white-alpha-10"
+                        />
+                    </div>
                 </div>
             </div>
         </>
     );
 };
 
-export default AddApplications;
+export default AddOffer;

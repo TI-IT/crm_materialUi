@@ -1,3 +1,13 @@
+const dropdownMongooseObject = {
+  dropdown: [
+    {
+      name: 'name',
+      MongoType: 'String',
+      MongoUnique: true,
+      MongoRequire: true,
+    },
+  ],
+};
 const Data = {
   Products: {
     input: [
@@ -48,102 +58,22 @@ const Data = {
       { name: 'city', title: 'Город', type: 'text', MongoType: 'String' },
     ],
   },
-  Citys: {
-    input: [
-      {
-        name: 'city',
-        title: 'Город',
-        type: 'text',
-        MongoType: 'String',
-        MongoUnique: true,
-        MongoRequire: true,
-      },
-    ],
-  },
-  TypeProduct: {
-    dropdown: [
-      {
-        name: 'name',
-        title: 'Вид продукта',
-        type: 'text',
-        MongoType: 'String',
-        MongoUnique: true,
-        MongoRequire: true,
-      },
-    ],
-  },
-  CategoryProduct: {
-    dropdown: [
-      {
-        name: 'name',
-        title: 'Вид продукта',
-        type: 'text',
-        MongoType: 'String',
-        MongoUnique: true,
-        MongoRequire: true,
-      },
-    ],
-  },
-  CategoryChildrenProduct: {
-    dropdown: [
-      {
-        name: 'name',
-        title: 'Вид продукта',
-        type: 'text',
-        MongoType: 'String',
-        MongoUnique: true,
-        MongoRequire: true,
-      },
-    ],
-  },
-  FinishingProduct: {
-    dropdown: [
-      {
-        name: 'name',
-        title: 'Вид продукта',
-        type: 'text',
-        MongoType: 'String',
-        MongoUnique: true,
-        MongoRequire: true,
-      },
-    ],
-  },
-  SupplierProduct: {
-    dropdown: [
-      {
-        name: 'name',
-        title: 'Вид продукта',
-        type: 'text',
-        MongoType: 'String',
-        MongoUnique: true,
-        MongoRequire: true,
-      },
-    ],
-  },
-  Unit: {
-    dropdown: [
-      {
-        name: 'name',
-        title: 'Вид продукта',
-        type: 'text',
-        MongoType: 'String',
-        MongoUnique: true,
-        MongoRequire: true,
-      },
-    ],
-  },
-  Markup: {
-    dropdown: [
-      {
-        name: 'name',
-        title: 'Вид продукта',
-        type: 'text',
-        MongoType: 'String',
-        MongoUnique: true,
-        MongoRequire: true,
-      },
-    ],
-  },
+  // Город
+  Citys: dropdownMongooseObject,
+  // Вид продукта
+  TypeProduct: dropdownMongooseObject,
+  // Категория
+  CategoryProduct: dropdownMongooseObject,
+  // Под категория
+  CategoryChildrenProduct: dropdownMongooseObject,
+  // Отделка
+  FinishingProduct: dropdownMongooseObject,
+  // Поставщик
+  SupplierProduct: dropdownMongooseObject,
+  //Ед. изм.
+  Unit: dropdownMongooseObject,
+  // Наценка
+  Markup: dropdownMongooseObject,
 };
 
 const ModelData = (nameModel) => {
