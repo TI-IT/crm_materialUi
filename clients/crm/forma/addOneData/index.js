@@ -8,19 +8,6 @@ function FormAddOneData({ server_host, addData, rerender }) {
     const [message, setMessage] = useState('');
     const [displayBasic, setDisplayBasic] = useState(false);
 
-    const basicDialogFooter = (
-        <Button
-            type="button"
-            label="Сохранить"
-            onClick={() => {
-                setDisplayBasic(false);
-                fetchAddNewData();
-            }}
-            icon="pi pi-check"
-            className="bg-green-400 border-white-alpha-10"
-        />
-    );
-
     async function fetchAddNewData() {
         const fethUrl = server_host + '/' + addData + '/addOneData';
         console.log(addData);
@@ -47,6 +34,19 @@ function FormAddOneData({ server_host, addData, rerender }) {
             alert('Сервер не отвечает');
         }
     }
+
+    const basicDialogFooter = (
+        <Button
+            type="button"
+            label="Сохранить"
+            onClick={() => {
+                setDisplayBasic(false);
+                fetchAddNewData();
+            }}
+            icon="pi pi-check"
+            className="bg-green-400 border-white-alpha-10"
+        />
+    );
 
     return (
         <>

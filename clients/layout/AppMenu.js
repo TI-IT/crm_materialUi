@@ -17,8 +17,11 @@ const AppMenu = () => {
             label: 'UI Components',
             items: [
                 { label: 'Клиенты', icon: 'pi pi-fw pi-id-card', to: '/crm/clients' },
+                { label: 'AdminProduct', icon: 'pi pi-fw pi-id-card', to: '/admin/products' },
+                { label: 'AdminCatalogs', icon: 'pi pi-fw pi-id-card', to: '/admin/catalogs' },
                 { label: 'Заказы', icon: 'pi pi-fw pi-id-card', to: '/crm/applications' },
                 { label: 'Товары', icon: 'pi pi-fw pi-id-card', to: '/crm/products' },
+                { label: 'Справочник', icon: 'pi pi-fw pi-id-card', to: '/crm/directory' },
                 { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/uikit/formlayout' },
                 { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/uikit/input' },
                 { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', to: '/uikit/floatlabel' },

@@ -23,7 +23,6 @@ const ProductsTable = ({ server_host }) => {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     const [message, setMessage] = useState('');
     const [dbDataProductsTitles, setDbDataProductsTitles] = useState([]);
-    console.log(products);
     const router = useRouter();
 
     const applicationService = new ApplicationService();

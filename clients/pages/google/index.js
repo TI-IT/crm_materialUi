@@ -13,7 +13,6 @@ const GoogleSheets = () => {
                 setData(data.products);
             });
     }, []);
-    // console.log(data.products);
     // const products = data.map((obj) => console.log(obj.productName));
     const products = data.map((obj) => <div key={obj.id}>{obj.productName}</div>);
     // const sceletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);

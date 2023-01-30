@@ -40,8 +40,8 @@ router.get('/getAllData', async (req, res) => {
 });
 
 router.get('/getAllDataGoogle', async (req, res) => {
-  const data = await getAllDataGoogleJson();
-  console.log(data);
+  const data = {};
+  // const data = await getAllDataGoogleJson();
   res.json({ ok: true, data: data });
 });
 

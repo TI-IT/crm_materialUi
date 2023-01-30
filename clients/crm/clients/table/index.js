@@ -171,6 +171,15 @@ const ClientsTable = ({ server_host }) => {
             <Button label="Создать" className="bg-green-400 border-white-alpha-10" type="button" onClick={() => router.push('/crm/clients/addClients/')} />
         </div>
     );
+    const actionBodyTemplate = (rowData) => {
+        return (
+            <>
+                <Button icon="pi pi-plus" className="p-button-rounded p-button-success mr-2" onClick={() => createDirectoryData(rowData)} />
+                <Button icon="pi pi-pencil" className="p-button-rounded p-button-success mr-2" onClick={() => editDirectory(rowData)} />
+                <Button icon="pi pi-trash" className="p-button-rounded p-button-warning mr-2" onClick={() => confirmDeleteDirectory(rowData)} />
+            </>
+        );
+    };
 
     return (
         <div className="grid">
@@ -181,6 +190,7 @@ const ClientsTable = ({ server_host }) => {
                     {dbDataClientsTitles.map((obj, id) => (
                         <Column key={id} field={obj.name} header={obj.title} sortable />
                     ))}
+                    <Column body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
                 </DataTable>
             </div>
         </div>

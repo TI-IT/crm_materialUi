@@ -62,6 +62,9 @@ const markupRouter = require('./routes/markup');
 const parserRouter = require('./routes/parser');
 const catalogRouter = require('./routes/catalog');
 const offerRouter = require('./routes/offer');
+const demoRouter = require('./routes/demo');
+const adminProductsRouter = require('./routes/adminProducts');
+const adminCatalogsRouter = require('./routes/adminCatalogs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -86,6 +89,9 @@ app.use('/markup', markupRouter);
 app.use('/parser', parserRouter);
 app.use('/catalog', catalogRouter);
 app.use('/offer', offerRouter);
+app.use('/demo', demoRouter);
+app.use('/adminProducts', adminProductsRouter);
+app.use('/adminCatalogs', adminCatalogsRouter);
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);

@@ -113,8 +113,6 @@ async function getAllTreeSelectData() {
   const catalog = await getDbData('catalog');
   const categoryProduct = await getDbData('categoryProduct');
 
-  console.log(catalog);
-  console.log(categoryProduct);
   return treeData;
 }
 

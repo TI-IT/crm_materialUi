@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FetchProducts from '../../products/addProducts/fetch';
+import FetchProducts from '../../admin/products/fetch';
 
 const DataProducts = ({ server_host }) => {
     const [dbData, setDbData] = useState({});

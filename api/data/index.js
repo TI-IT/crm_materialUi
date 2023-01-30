@@ -9,6 +9,30 @@ const dropdownMongooseObject = {
   ],
 };
 const Data = {
+  AdminCatalogs: {
+    input: [
+      { name: 'article', title: 'Артикул', type: 'text', MongoType: 'String' },
+      { name: 'productName', title: 'Наименование', type: 'text', MongoType: 'String' },
+      { name: 'costPrice', title: 'Себестоимость', type: 'text', MongoType: 'String' },
+      { name: 'sellingPrice', title: 'Продажная цена', type: 'text', MongoType: 'String' },
+      { name: 'linkPhoto', title: 'Сылка на фото', type: 'text', MongoType: 'String' },
+    ],
+    dropdown: [
+      { name: 'typeProduct', title: 'Вид продукта', type: 'text', MongoType: 'String' },
+      { name: 'catalog', title: 'Каталог товаров', type: 'text', MongoType: 'String' },
+      { name: 'categoryProduct', title: 'Категория', type: 'text', MongoType: 'String' },
+      {
+        name: 'categoryChildrenProduct',
+        title: 'Под категория',
+        type: 'text',
+        MongoType: 'String',
+      },
+      { name: 'finishingProduct', title: 'Отделка', type: 'text', MongoType: 'String' },
+      { name: 'supplierProduct', title: 'Поставщик', type: 'text', MongoType: 'String' },
+      { name: 'unit', title: 'Ед. изм.', type: 'text', MongoType: 'String' },
+      { name: 'markup', title: 'Наценка', type: 'number', MongoType: 'Number' },
+    ],
+  },
   Products: {
     input: [
       { name: 'article', title: 'Артикул', type: 'text', MongoType: 'String' },
